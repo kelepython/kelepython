@@ -81,10 +81,10 @@ latex_elements = {# The paper size ('letterpaper' or 'a4paper').
 \usepackage{xeCJK}
 \usepackage{indentfirst}
 \setlength{\parindent}{2em}
-\setCJKmainfont{Microsoft YaHei}
-\setCJKmonofont[Scale=0.9]{Microsoft YaHei}
-\setCJKfamilyfont{song}{Microsoft YaHei}
-\setCJKfamilyfont{sf}{Microsoft YaHei}
+\setCJKmainfont{WenQuanYi Micro Hei}
+\setCJKmonofont[Scale=0.9]{WenQuanYi Micro Hei Mono}
+\setCJKfamilyfont{song}{WenQuanYi Micro Hei}
+\setCJKfamilyfont{sf}{WenQuanYi Micro Hei}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt
 """}
@@ -92,10 +92,10 @@ latex_elements = {# The paper size ('letterpaper' or 'a4paper').
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-  ('index', 'python3-cookbook.tex', u'《可乐python说》',
-   u'可乐同学', 'howto'),
-]
+# latex_documents = [
+#   ('index', 'python3-cookbook.tex', u'《可乐python说》',
+#    u'可乐同学', 'howto'),
+# ]
 
 # -- Options for manual page output ---------------------------------------
 
