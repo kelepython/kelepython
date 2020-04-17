@@ -62,7 +62,7 @@ html_theme = 'default'
 html_static_path = ['_static']
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Python-Time BLOG'
+htmlhelp_basename = 'Kele-Python BLOG'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -93,7 +93,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     ('index', 'python3-cookbook.tex', u'《Python编程时光》',
-     u'小明同学', 'howto'),
+     u'可乐同学', 'howto'),
 ]
 
 # -- Options for manual page output ---------------------------------------
@@ -102,7 +102,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'python3-cookbook', u'《Python编程时光》',
-     [u'小明同学'], 1)
+     [u'可乐同学'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -116,7 +116,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'Python-Time', u'《Python编程时光》',
-     u'小明同学', 'Python-Time', '《Python编程时光》',
+     u'可乐同学', 'Python-Time', '《Python编程时光》',
      'Miscellaneous'),
 ]
 
