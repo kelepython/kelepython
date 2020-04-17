@@ -92,7 +92,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ('index', 'python3-cookbook.tex', u'《Python编程时光》',
+    ('index', 'python3-cookbook.tex', u'《可乐python说》',
      u'可乐同学', 'howto'),
 ]
 
@@ -101,7 +101,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'python3-cookbook', u'《Python编程时光》',
+    ('index', 'python3-cookbook', u'《可乐python说》',
      [u'可乐同学'], 1)
 ]
 
@@ -115,8 +115,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'Python-Time', u'《Python编程时光》',
-     u'可乐同学', 'Python-Time', '《Python编程时光》',
+    ('index', 'Python-Time', u'《可乐python说》',
+     u'可乐同学', 'Python-Time', '《可乐python说》',
      'Miscellaneous'),
 ]
 
