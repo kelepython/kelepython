@@ -115,8 +115,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'Python-Time', u'《可乐python说》',
-     u'可乐同学', 'Python-Time', '《可乐python说》',
+    ('index', 'Kele-Python', u'《可乐python说》',
+     u'可乐同学', 'Kele-Python', '《可乐python说》',
      'Miscellaneous'),
 ]
 
