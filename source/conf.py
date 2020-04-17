@@ -81,10 +81,10 @@ latex_elements = {# The paper size ('letterpaper' or 'a4paper').
 \usepackage{xeCJK}
 \usepackage{indentfirst}
 \setlength{\parindent}{2em}
-\setCJKmainfont{WenQuanYi Micro Hei}
-\setCJKmonofont[Scale=0.9]{WenQuanYi Micro Hei Mono}
-\setCJKfamilyfont{song}{WenQuanYi Micro Hei}
-\setCJKfamilyfont{sf}{WenQuanYi Micro Hei}
+\setCJKmainfont{Microsoft YaHei}
+\setCJKmonofont[Scale=0.9]{Microsoft YaHei}
+\setCJKfamilyfont{song}{Microsoft YaHei}
+\setCJKfamilyfont{sf}{Microsoft YaHei}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt
 """}
