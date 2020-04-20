@@ -44,7 +44,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'可乐python说'
-copyright = u'2020可乐'
+copyright = u'可乐'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -62,7 +62,7 @@ html_theme = 'default'
 html_static_path = ['_static']
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Kele-Python BLOG'
+htmlhelp_basename = '可乐python说'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -91,19 +91,19 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    ('index', 'python3-cookbook.tex', u'《可乐python说》',
-     u'可乐同学', 'howto'),
-]
+# latex_documents = [
+#    ('index', 'python3-cookbook.tex', u'《可乐python说》',
+#     u'可乐同学', 'howto'),
+# ]
 
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    ('index', 'python3-cookbook', u'《可乐python说》',
-     [u'可乐同学'], 1)
-]
+# man_pages = [
+#     ('index', 'python3-cookbook', u'《可乐python说》',
+#     [u'可乐同学'], 1)
+# ]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -114,11 +114,11 @@ man_pages = [
 # Grouping the document tree into Texinfo files. List of tuples
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
-texinfo_documents = [
-    ('index', 'Kele-Python', u'《可乐python说》',
-     u'可乐同学', 'Kele-Python', '《可乐python说》',
-     'Miscellaneous'),
-]
+# texinfo_documents = [
+#   ('index', 'Kele-Python', u'《可乐python说》',
+#    u'可乐同学', 'Kele-Python', '《可乐python说》',
+#    'Miscellaneous'),
+# ]
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
@@ -134,3 +134,8 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
 
 _exts = "../exts"
 sys.path.append(os.path.abspath(_exts))
+
+html_js_files = [
+    'js/readmore.js',
+    'js/baidutongji.js',
+]
