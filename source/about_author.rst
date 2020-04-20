@@ -10,6 +10,6 @@
    :alt: 公众号名片.jpg
 
    公众号名片.jpg
-`kelepython.readthedocs.io <https://kelepython.readthedocs.io/>`__
+`个人博客 <https://kelepython.readthedocs.io/>`__
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
