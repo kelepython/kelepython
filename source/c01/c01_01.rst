@@ -233,3 +233,4 @@ waiter\_tran = "预备开始，1234567" >>> waiter\_tran.translate(tran\_str)
 3. index、find 效果是一样的，但是 find 有容错机制，使用时优先选择。
 
 4. 今天先介绍通用类自建函数的相关操作，后续将介绍其他类函数的相关操作。
+
