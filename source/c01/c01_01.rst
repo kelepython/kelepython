@@ -1,9 +1,235 @@
-1.1 一文搞定开发环境的搭建
-==========================
+一文搞定 Python 字符串操作（上）
+--------------------------------
 
-1. 下载安装 Python 语言
------------------------
-2. 配置 Python 环境
--------------------
-3. 配置环境变量
----------------
+**前言**
+~~~~~~~~
+
+Python3
+中有六个标准的数据类型，它们分别是数字（Number）、\ **字符串**\ （String）、列表（List）、元组（Tuple）、集合（Set）、字典（Dictionary）。
+
+数据类型分类\ **可变**\ 数据类型、和\ **不可变**\ 数据类型，其中可变类型包括列表、字典、集合，不可变类型包括数字、字符串、元组。
+
+本文主要介绍 Python 中字符串的内建函数，并配上相关代码，便于理解、吸收。
+
+--------------
+
+**字符串简介**
+~~~~~~~~~~~~~~
+
+Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同时使用反斜杠
+``\``
+转义特殊字符，实际工作当中，接触、处理最多的数据类型，莫过于字符串了。
+
+下面使用两种方式定义字符串，两种方式均可
+
+.. code:: python
+
+    >>> single_str = 'a我是单引号括起来的字符串'
+    >>> type(single_str)      # type 查看数据类型
+    <class 'str'>
+
+    >>> double_str = "a我是双引号括起来的字符串"
+    >>> type(double_str)      # type 查看数据类型
+    <class 'str'>
+
+**字符串操作**
+~~~~~~~~~~~~~~
+
+我将字符串操作分为五大类，分别是通用类、英文单词类、判断类、编码类、以及其他类，今天先介绍一下\ **通用类**\ 的相关操作。
+
+通用类
+^^^^^^
+
+-  replace(old, new [, max])，把 将字符串中的 old 替换成 new, max
+   为可选参数，若指定 max ，则替换 max 次。
+
+\`\`\`python # 使用语法：str.replace(old, new[, max]) # 用法一：不指定
+max ，替换所有 >>> double\_str = "my name is kele kele" >>>
+double\_str.replace("kele", "xuebi") 'my name is xuebi xuebi'
+
+# 用法二：指定 max ，替换 max 次 >>> double\_str.replace("kele",
+"xuebi", 1) 'my name is xuebi xuebi' \`\`\`
+
+-  split(str="", num=string.count(str))，以 str
+   为分隔符截取字符串，默认为所有的空字符，包括空格、换行\ ``\n``\ 、制表符\ ``\t``\ 等。若指定
+   num ，则截取出 num+1 个子字符串，返回包含所有字符串的列表。
+
+\`\`\`python # 使用语法：str.split(str="", num=string.count(str)) #
+用法一：不指定 num ，截取所有 >>> double\_str = "mynameiskelekelea" >>>
+double\_str.split("e") ['mynam', 'isk', 'l', 'k', 'l', 'a']
+
+# 用法二：指定 num ，截取 num 次 >>> double\_str.split("e", 1) ['mynam',
+'iskelekelea'] \`\`\`
+
+-  splitlines([keepends])，按照行('', '',
+   ')分隔，返回一个包含各行作为元素的列表，参数 keepends 默认为
+   False，不包含换行符，如果为 True，则保留换行符。
+
+\`\`\`python # 使用语法：str.splitlines([keepends]) # 用法一：不指定
+keepends，默认为 False >>> double\_str = "my nameke" >>>
+double\_str.splitlines() ['my name', 'is ke', 'le']
+
+# 用法一：指定 keepends 为 True, 保留切割符 >>>
+double\_str.splitlines(True) ['my name', 'is ke', 'le'] \`\`\`
+
+-  len(string)，返回字符串的长度。
+
+``python   # 使用语法：len(string)   >>> double_str = "my name is kele"   >>> len(double_str)   15``
+
+-  find(str, beg=0, end=len(string))，检测 str
+   是否包含在字符串中，若指定 beg 和 end
+   ，则在指定范围内检测，若包含则返回第一次出现的索引值，否则返回 -1。
+
+``python   # 使用语法：str.find(str, beg=0, end=len(string))   >>> double_str = "my name is kele"   >>> double_str.find("h")   -1   >>> double_str.find("e")   6   # 指定范围   >>> double_str.find("i"，0，5)   -1``
+
+-  rfind(str, beg=0,end=len(string))，与 find()
+   函数类似，但它是从右边开始查找，返回字符串最后一次出现的索引值。
+
+``python   # 使用语法：str.rfind(str, beg=0, end=len(string))   >>> double_str = "my name is kele"   >>> double_str.rfind("h")   -1   >>> double_str.rfind("e")   14   # 指定范围   >>> double_str.rfind("i"，0，5)   -1``
+
+-  index(str, beg=0, end=len(string))，与 find() 函数类似，但如果 str
+   不在字符串中会报如下错误。
+
+\`\`\`python # 使用语法：str.index(str, beg=0, end=len(string)) >>>
+double\_str = "my name is kele" >>> double\_str.index("h") #
+元素不在字符串中回报错 Traceback (most recent call last): File "", line
+1, in ValueError: substring not found
+
+            double\_str.index("e") 6 # 指定范围
+            double\_str.index("a"，0，5) 4 \`\`\`
+
+-  rindex( str, beg=0, end=len(string))，类似于
+   index()，不过是从右边开始，返回字符串最后一次出现的索引值。
+
+\`\`\`python # 使用语法：str.rindex(str, beg=0, end=len(string)) >>>
+double\_str = "my name is kele" >>> double\_str.rindex("h") #
+元素不在字符串中回报错 Traceback (most recent call last): File "", line
+1, in ValueError: substring not found
+
+            double\_str.rindex("e") 14 # 指定范围
+            double\_str.rindex("a"，0，5) 4 \`\`\`
+
+-  count(str, beg= 0,end=len(string)），返回 str 在 string
+   中出现的次数，若指定 beg 或者 end 参数，则返回在指定范围内 str
+   出现的次数。
+
+``python   # 使用语法：str.count(str, beg=0, end=len(string))   >>> double_str = "my name is kele"   >>> double_str.count("h")   0   >>> double_str.count("e")   3   # 指定范围   >>> double_str.count("e"，0，7)   1``
+
+-  lstrip([chars])，只处理字符串句首的空格或指定字符，其他位置忽略。
+
+| \`\`\`python # 使用语法：str.lstrip([chars) # 处理句首空格 >>>
+double\_str = " 句首 有两个空格" >>> double\_str.lstrip()
+|  '句首 有两个空格'
+
+| # 处理句首指定字符 >>> double\_str = "句首句首有一个空格" >>>
+double\_str.lstrip("句首")
+|  '有一个空格' \`\`\`
+
+-  rstrip([chars])，处理字符串末尾的空格或指定字符，其他位置忽略 。
+
+| \`\`\`python # 使用语法：str.rstrip([chars]) # 处理句尾空格 >>>
+double\_str = "句子末尾 有两个空格 " >>> double\_str.rstrip()
+|  '句子末尾 有两个空格'
+
+| # 处理句尾其他字符 >>> double\_str = "句尾有一个空格空格" >>>
+double\_str.rstrip("空格")
+|  '句尾有一个' \`\`\`
+
+-  strip([chars])， 处理字符串两端的空格或指定字符，可视为 lstrip() 和
+   rstrip() 的效果叠加。
+
+| \`\`\`python # 使用语法：str.strip([chars]) # 处理两端的空格 >>>
+double\_str = " 句首 句尾均有空格 " >>> double\_str.strip()
+|  '句首 句尾均有空格'
+
+| # 处理两端的指定字符 >>> double\_str = "你好有一个 空格你好" >>>
+double\_str.strip("你好")
+|  '有一个 空格' \`\`\`
+
+-  center(width, fillchar)，fillchar
+   为填充的字符，默认使用空格填充，返回指定宽度
+   width、原字符串居中、使用 fillchar 填充后的字符串。
+
+| \`\`\`python # 使用语法：str.center(width, fillchar) #
+用法一：不指定填充字符，默认使用空字符填充 >>> double\_str =
+"我想通过两侧填充来让自己变强" >>> double\_str.center(20)
+|  ' 我想通过两侧填充来让自己变强 '
+
+| # 用法二：指定填充字符 【\ *】 >>> double\_str.center(20，"*")
+|  '***我想通过两侧填充来让自己变强***\ ' \`\`\`
+
+-  ljust(width, fillchar))，fillchar
+   为填充的字符，默认使用空格填充，返回指定宽度
+   width、原字符串左对齐、使用 fillchar 填充后的字符串。
+
+| \`\`\`python # 使用语法：str.ljust(width, fillchar) #
+用法一：不指定填充字符，默认使用空字符 >>> double\_str =
+"我想通过右侧填充让自己变强" >>> double\_str.ljust(20)
+|  '我想通过右侧填充让自己变强 '
+
+| # 用法二：指定填充字符 【\ *】 >>> double\_str.ljust(20，"*")
+|  '我想通过右侧填充让自己变强\*\*\*\*\*\*\*' \`\`\`
+
+-  rjust(width, fillchar)，fillchar
+   为填充的字符，默认使用空格填充，返回指定宽度
+   width、原字符串靠右对齐、使用 fillchar 填充后的字符串。
+
+| \`\`\`python # 使用语法：str.rjust(width, fillchar) #
+用法一：不指定填充字符，默认使用空字符 >>> double\_str =
+"我想通过左侧填充让自己变强" >>> double\_str.rjust(20)
+|  ' 我想通过左侧填充让自己变强'
+
+| # 用法二：指定填充字符 【\ *】 >>> double\_str.rjust(20，"*")
+|  '\*\*\*\*\*\*\*我想通过左侧填充让自己变强' \`\`\`
+
+-  zfill (width)，返回长度为 width 的字符串，原字符串右对齐，前面使用 0
+   填充。
+
+``python   # 使用语法：str.zfill (width)   >>> double_str = "我想通过0填充让自己变强"   >>> double_str.zfill(20)        '00000000我想通过0填充让自己变强'``
+
+-  join(seq)，以指定字符串作为拼接字符，将 seq
+   中所有的元素(必须是字符串类型)，拼接为一个新的字符串。
+
+\`\`\`python # 使用语法："[chars]".join(seq) #
+尝试：拼接对象包含非字符串类型会报错 >>> seq\_list =["我想", "合并",
+"自己", 1] >>> "".join(seq\_list) Traceback (most recent call last):
+File "", line 1, in TypeError: sequence item 3: expected str instance,
+int found
+
+| # 用法一：不指定拼接字符，默认使用空字符 >>> seq\_list =["我想",
+"合并", "自己"] >>> "".join(seq\_list)
+|  '我想合并自己'
+
+| # 用法二：指定拼接字符【\ ***】 >>> "***".join(seq\_list)
+|  '我想***合并***\ 自己' \`\`\`
+
+-  maketrans(input,
+   out)，创建字符映射的转换表，第一个字符串参数，表示需要转换的字符，第二个字符串参数表示转换的目标。
+
+\`\`\`python # 使用语法：str.maketrans(input, out) #
+注意：两个字符串的长度必须相同，否则会报如下错误。 >>> input\_str =
+"预备开始，1234567" >>> out\_str = "哆来咪发唆啦西" >>> tran\_str =
+str.maketrans(input\_str, out\_str) Traceback (most recent call last):
+File "", line 1, in ValueError: the first two maketrans arguments must
+have equal length
+
+# 正确的使用方式 >>> input\_str = "1234567" >>> out\_str =
+"哆来咪发唆啦西" >>> tran\_str = str.maketrans(input\_str, out\_str) >>>
+waiter\_tran = "预备开始，1234567" >>> waiter\_tran.translate(tran\_str)
+'预备开始，哆来咪发唆啦西' \`\`\`
+
+**总结**
+~~~~~~~~
+
+1. 通用类自建函数中，
+   replace、join、strip、count、split、index、len、find 比较常用。
+
+2. 通用类自建函数支持\ **链式调用**\ ，如处理字符串中空字符串和换行符，我们先使用
+   replace 处理空字符串，再使用 strip
+   处理换行符，可直接在后面使用\ ``.``\ 链式调用。
+
+``python    >>> double_str = " 我是等待链式 调用处理的字符串 \n"    >>> double_str.replace(" ", "").strip()    '我是等待链式调用处理的字符串'``
+
+3. index、find 效果是一样的，但是 find 有容错机制，使用时优先选择。
+
+4. 今天先介绍通用类自建函数的相关操作，后续将介绍其他类函数的相关操作。
