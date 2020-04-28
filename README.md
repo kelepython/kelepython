@@ -5,5 +5,5 @@
 - 1.1 [一文搞定 Python 字符串操作（上）](<https://kelepython.readthedocs.io/en/latest/c01/c01_01.html>)
 
 ---
-![关注公众号](https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg)
+![](https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg)
 
