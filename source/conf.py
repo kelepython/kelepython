@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # python3-cookbook documentation build configuration file, created by
-# sphinx-quickstart on Tue Aug 19 03:21:45 2014.
+# sphinx-quickstart on Tue April 20 03:21:45 2020.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
