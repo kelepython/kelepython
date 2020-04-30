@@ -1,0 +1,411 @@
+1.2 一文搞定 Python 字符串操作（下）
+------------------------------------
+
+**前言**
+~~~~~~~~
+
+前面介绍了通用类自建函数的相关操作，详细内容请前往\ **一文搞定 Python
+字符串操作（上）**\ 阅读。
+
+今天介绍一下英文\ **单词类**\ 、\ **判断类**\ 、\ **编码类**\ 、以及\ **其他类**\ 自建函数的相关操作，并配上相关代码，便于理解、吸收。
+
+.. figure:: https://i.loli.net/2020/04/30/UYbiOzXv658Jfjl.jpg
+   :alt: 
+
+--------------
+
+单词类
+^^^^^^
+
+-  capitalize()，将字符串的首字母转换为大写。
+
+.. code:: python
+
+    # 使用语法：str.capitalize()
+    >>> double_str = "my name is kele"
+    >>> double_str.capitalize()
+    'My name is kele'
+
+-  title()，将字符串中所有单词的首字母转换为大写。
+
+.. code:: python
+
+    # 使用语法：str.title()
+    >>> double_str = "my name is kele"
+    >>> double_str.title()
+    'My Name Is Kele'
+
+-  upper()，将字符串中的小写字母全部转换为大写。
+
+.. code:: python
+
+    # 使用语法：str.upper()
+    >>> double_str = "my name is kele"
+    >>> double_str.upper()
+    'MY NAME IS KELE'
+
+-  lower()，将字符串中所有大写字母转换为小写。
+
+.. code:: python
+
+    # 使用语法：str.lower()
+    >>> double_str = "MY NAME IS KELE"
+    >>> double_str.lower()
+    'my name is kele'
+
+-  swapcase()，将字符串中的大写字母转换为小写，小写字母转换为大写。
+
+.. code:: python
+
+    # 使用语法：str.swapcase()
+    >>> double_str = "MY NAME is kele"
+    >>> double_str.swapcase()
+    'my name IS KELE'
+
+-  max(str)，返回字符串 str 中最大的字母。
+
+.. code:: python
+
+    # 使用语法：max(str)
+    >>> double_str = "my name is kele"
+    >>> max(double_str)
+    'y'
+
+-  min(str)，返回字符串 str 中最小的字母。
+
+.. code:: python
+
+    # 使用语法：min(str)
+    >>> double_str = "double"
+    >>> min(double_str)
+    'b'
+
+**判断类**
+^^^^^^^^^^
+
+-  startswith(substr,
+   beg=0,end=len(string))，判断字符串是否是以指定子字符串 substr
+   开头，是则返回 True，否则返回 False。若指定 beg 和 end
+   值，则在指定范围内判断。
+
+.. code:: python
+
+    # 使用语法：str.startswith(substr, beg=0,end=len(string))
+    # 用法一：不指定范围
+    >>> double_str = "my name is kele"
+    >>> double_str.startswith("my")
+    True
+    >>> double_str.startswith("your")
+    False
+
+    # 用法二：指定范围
+    >>> double_str.startswith("my", 2, 6)
+    False
+
+-  endswith(suffix, beg=0,
+   end=len(string))，判断字符串是否以指定子字符串 suffix 结束，是则返回
+   True，否则返回 False。若指定 beg 和 end 值，则在指定范围内判断。
+
+.. code:: python
+
+    # 使用语法：str.endswith(suffix, beg=0,end=len(string))
+    # 用法一：不指定范围
+    >>> double_str = "my name is kele"
+    >>> double_str.endswith("kele")
+    True
+    >>> double_str.endswith("xuebi")
+    False
+
+    # 用法二：指定范围
+    >>> double_str.endswith("kele", 0, 6)
+    False
+
+-  isdigit()，判断字符串是否只包含数字，是则返回 True， 否则返回 False。
+
+.. code:: python
+
+    # 使用语法：str.isdigit()
+    >>> double_str = "1234567"
+    >>> double_str.isdigit()
+    True
+
+    >>> double_str = "1234567a"
+    >>> double_str.isdigit()
+    False
+
+-  isalnum()，判断字符串是否至少有一个字符并且只包含字母、数字或字母和数字，是则返回
+   True，否则返回 False。
+
+.. code:: python
+
+    # 使用语法：str.isalnum()
+    # 空字符判断
+    >>> double_str = ""
+    >>> double_str.isalnum()
+    False
+
+    # 仅包含字母判断
+    >>> double_str = "abcdefg"
+    >>> double_str.isalnum()
+    True
+
+    # 仅包含数字判断
+    >>> double_str = "1234567"
+    >>> double_str.isalnum()
+    True
+
+    # 仅包含字母和数字判断
+    >>> double_str = "1234567a"
+    >>> double_str.isalnum()
+    True
+
+    # 包含标点判断
+    >>> double_str = "1234567a...."
+    >>> double_str.isalnum()
+    False
+
+-  isalpha()，判断字符串是否至少有一个字符，并且全为字母，是则返回
+   True， 否则返回 False，\ **中文也被视为字母字符**\ 。
+
+.. code:: python
+
+    # 使用语法：str.isalpha()
+    # 空字符判断
+    >>> double_str = ""
+    >>> double_str.isalpha()
+    False
+
+    # 仅包含字母判断
+    >>> double_str = "abcdefg"
+    >>> double_str.isalpha()
+    True
+
+    # 仅包含数字判断
+    >>> double_str = "abcdefg1"
+    >>> double_str.isalpha()
+    False
+
+-  islower()，判断字符串是否至少包含一个字母，并且字母全为小写，是则返回
+   True，否则返回 False。
+
+.. code:: python
+
+    # 使用语法：str.islower()
+    # 空字符、不包含字母判断
+    >>> double_str = ""
+    >>> double_str.islower()
+    False
+    >>> double_str = "1234567"
+    >>> double_str.islower()
+    False
+
+    # 包含大写字母判断
+    >>> double_str = "Abcdefg"
+    >>> double_str.islower()
+    False
+
+    # 包含字母全为小写判断
+    >>> double_str = "abcdefg123456"
+    >>> double_str.islower()
+    True
+
+-  isupper()，判断字符串是否至少包含一个字母，并且字母全为大写，是则返回
+   True，否则返回 False。
+
+.. code:: python
+
+    # 使用语法：str.isupper()
+    # 空字符、不包含字母判断
+    >>> double_str = ""
+    >>> double_str.isupper()
+    False
+    >>> double_str = "1234567"
+    >>> double_str.isupper()
+    False
+
+    # 包含小写字母判断
+    >>> double_str = "ABCDEFg"
+    >>> double_str.isupper()
+    False
+
+    # 包含字母全为大写判断
+    >>> double_str = "ABCDEFG123456"
+    >>> double_str.isupper()
+    True
+
+-  istitle()，判断字符串中所有英文单词的首字母是全为大写，其他字母全为小写，是则返回
+   True，否则返回 False。
+
+.. code:: python
+
+    # 使用语法：str.istitle()
+    # 空字符、不包含字母判断
+    >>> double_str = ""
+    >>> double_str.istitle()
+    False
+    >>> double_str = "1234567"
+    >>> double_str.istitle()
+    False
+
+    # 包含小写字母判断
+    >>> double_str = "ABCDEFg"
+    >>> double_str.istitle()
+    False
+
+    # 包含字母全为大写判断
+    >>> double_str = "ABCDEFG123456"
+    >>> double_str.istitle()
+    True
+
+-  isnumeric()，判断字符串是否只包含数字，是则返回 True，否则返回
+   False。数字可以是： Unicode
+   数字，全角数字（双字节），罗马数字，汉字数字。
+
+.. code:: python
+
+    # 使用语法：str.isnumeric()
+    # 空字符判断
+    >>> double_str = ""
+    >>> double_str.isnumeric()
+    False
+
+    # 包含非数字判断
+    >>> double_str = "1234567a"
+    >>> double_str.isnumeric()
+    False
+
+    # 全为阿拉伯数字、中文数字判断
+    >>> double_str = "1234567"
+    >>> double_str.isnumeric()
+    True
+    >>> double_str = "123一二"
+    >>> double_str.isnumeric()
+    True
+
+-  isdecimal()，判断字符串是否只包含十进制数字，是则返回 True，否则返回
+   False。
+
+.. code:: python
+
+    # 使用语法：str.isdecimal()
+    # 空字符判断
+    >>> double_str = ""
+    >>> double_str.isdecimal()
+    False
+
+    # 包含非十进制数字判断
+    >>> double_str = "1234567a"
+    >>> double_str.isdecimal()
+    False
+
+    # 全为十进制数字判断
+    >>> double_str = "1234567"
+    >>> double_str.isdecimal()
+    True
+
+-  isspace()，判断字符串是否只包含空白字符，是则返回 True，否则返回
+   False。
+
+.. code:: python
+
+    # 使用语法：str.isdecimal()
+    # 空字符判断
+    >>> double_str = ""
+    >>> double_str.isspace()
+    False
+
+    # 空格字符判断
+    >>> double_str = "     "
+    >>> double_str.isspace()
+    True
+
+    # 换行符、制表符、回车符判断
+    >>> double_str = "\n\t\r"
+    >>> double_str.isspace()
+    True
+
+**编码类**
+^^^^^^^^^^
+
+-  encode(encoding='UTF-8'，errors='strict')，以 encoding
+   指定的编码格式编码字符串，默认为\ ``utf-8``\ ，如果出错默认报一个ValueError
+   的异常，除非 errors 指定的是 ``ignore`` 或者 ``replace``\ 。
+
+.. code:: python
+
+    # 使用语法：str.encode(encoding='UTF-8'，errors='strict')
+    >>> double_str = "utf-8编码"
+    >>> double_str.encode()
+    b'utf-8\xe7\xbc\x96\xe7\xa0\x81'
+
+    >>> double_str = "gbk编码"
+    >>> double_str.encode(encoding="gbk")
+    b'gbk\xb1\xe0\xc2\xeb'
+
+-  bytes.decode(encoding="utf-8"，
+   errors="strict")，处理使用指定编码格式编码后的字符串，其中
+   ``bytes``\ 可通过字符串编码 str.encode() 来获取。
+
+.. code:: python
+
+    # 使用语法：bytes.encode(encoding='UTF-8'，errors='strict')
+    >>> double_str = "utf-8编码"
+    >>> utf8_encode = double_str.encode()
+    >>> utf8_encode.decode()
+    'utf-8编码'
+
+    >>> double_str = "gbk编码"
+    >>> gbk_encode = double_str.encode("gbk")
+    >>> gbk_encode.decode("gbk")
+    'gbk编码'
+
+**其他**\ 类
+^^^^^^^^^^^^
+
+-  expandtabs(tabsize=8)，把字符串 string
+   中的水平制表符\ ``tab 符号``\ 转为空格，默认为 8 个空格 。
+
+.. code:: python
+
+    # 使用语法：str.expandtabs()
+    # 不指定空格数，默认为 8 
+    >>> double_str = "\t"
+    >>> double_str.expandtabs()
+    '        '
+
+    # 指定空格数为 4
+    >>> double_str.expandtabs(tabsize=4)
+    '    '
+
+-  translate(table, deletechars="")，根据 str 给出的表 (包含 256
+   个字符)转换 string 的字符，bytes 类型的数据还支持，过滤 deletechars
+   参数中的字符。
+
+.. code:: python
+
+    # 使用语法一：str.translate(table)
+    >>> input_str = "1234567"
+    >>> out_str = "哆来咪发唆啦西"
+    >>> table = str.maketrans(input_str, out_str)
+    >>> double_str = "预备开始，1234567"
+    >>> double_str.translate(table)
+    '预备开始，哆来咪发唆啦西'
+
+    # 使用语法二：bytes.translate(table[, delete])  
+    >>> input_str = b"1234567"
+    >>> out_str = b"abcdefg"
+    >>> table = bytes.maketrans(input_str, out_str)
+    >>> double_str = b"1234567"
+    >>> double_str.translate(table, b"7")
+    b'abcdef'
+
+**总结**
+~~~~~~~~
+
+1. 单词类函数中，title、upper、lower、 capitalize 较为常用。
+2. 判断类函数，是处理判断相关业务逻辑的好帮手，其中 startswith、endswith
+   能帮我们精确判断出以特定字符开头、结尾的相关数据，如固定头文件数据、文件的后缀名判断等。
+3. 编码类函数在工作也比较常用，如\ **网络爬虫**\ 中的页面数据解析、外部
+   API 调用编码处理等，\ **注意解码、编码的编码方式必须一致**\ 。
+4. 至此，Python
+   字符串自建函数的相关操作已经全部介绍完毕，有描述不当之处，欢迎在留言区批评、指正，也可加我微信进一步沟通。
