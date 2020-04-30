@@ -1,5 +1,5 @@
-1.1 一文搞定 Python 字符串操作（上）
-------------------------------------
+一文搞定 Python 字符串操作（上）
+--------------------------------
 
 **前言**
 ~~~~~~~~
@@ -10,6 +10,9 @@ Python3
 数据类型分类\ **可变**\ 数据类型、和\ **不可变**\ 数据类型，其中可变类型包括列表、字典、集合，不可变类型包括数字、字符串、元组。
 
 本文主要介绍 Python 中字符串的内建函数，并配上相关代码，便于理解、吸收。
+
+.. figure:: https://i.loli.net/2020/04/30/UYbiOzXv658Jfjl.jpg
+   :alt: 
 
 --------------
 
@@ -24,13 +27,10 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
 .. code:: python
 
-    >>> single_str = 'a我是单引号括起来的字符串'
-    >>> type(single_str)      # type 查看数据类型
-    <class 'str'>
-
-    >>> double_str = "a我是双引号括起来的字符串"
-    >>> type(double_str)      # type 查看数据类型
-    <class 'str'>
+    single_str = 'a我是单引号括起来的字符串'
+    type(single_str)      # type 查看数据类型
+    double_str = "a我是双引号括起来的字符串"
+    type(double_str)      # type 查看数据类型
 
 **字符串操作**
 ~~~~~~~~~~~~~~
@@ -45,14 +45,10 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
 .. code:: python
 
-    # 使用语法：str.replace(old, new[, max])
-    # 用法一：不指定 max ，替换所有
-    >>> double_str = "my name is kele kele"
-    >>> double_str.replace("kele", "xuebi")
+    double_str = "my name is kele kele"
+    double_str.replace("kele", "xuebi")
     'my name is xuebi xuebi'
-
-    # 用法二：指定 max ，替换 max 次
-    >>> double_str.replace("kele", "xuebi", 1)
+    double_str.replace("kele", "xuebi", 1)
     'my name is xuebi xuebi'
 
 -  split(str="", num=string.count(str))，以 str
@@ -63,12 +59,12 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法：str.split(str="", num=string.count(str))
     # 用法一：不指定 num ，截取所有
-    >>> double_str = "mynameiskelekelea"
-    >>> double_str.split("e")
+    double_str = "mynameiskelekelea"
+    double_str.split("e")
     ['mynam', 'isk', 'l', 'k', 'l', 'a']
 
     # 用法二：指定 num ，截取 num 次
-    >>> double_str.split("e", 1)
+    double_str.split("e", 1)
     ['mynam', 'iskelekelea']
 
 -  splitlines([keepends])，按照行('', '',
@@ -79,12 +75,12 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法：str.splitlines([keepends])
     # 用法一：不指定 keepends，默认为 False
-    >>> double_str = "my name\nis ke\rle\r\n"
-    >>> double_str.splitlines()
+    double_str = "my name\nis ke\rle\r\n"
+    double_str.splitlines()
     ['my name', 'is ke', 'le']
 
     # 用法一：指定 keepends 为 True, 保留切割符
-    >>> double_str.splitlines(True)
+    double_str.splitlines(True)
     ['my name\n', 'is ke\r', 'le\r\n']
 
 -  len(string)，返回字符串的长度。
@@ -92,8 +88,8 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 .. code:: python
 
     # 使用语法：len(string)
-    >>> double_str = "my name is kele"
-    >>> len(double_str)
+    double_str = "my name is kele"
+    len(double_str)
     15 
 
 -  find(str, beg=0, end=len(string))，检测 str
@@ -103,13 +99,13 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 .. code:: python
 
     # 使用语法：str.find(str, beg=0, end=len(string))
-    >>> double_str = "my name is kele"
-    >>> double_str.find("h")
+    double_str = "my name is kele"
+    double_str.find("h")
     -1
-    >>> double_str.find("e")
+    double_str.find("e")
     6
     # 指定范围
-    >>> double_str.find("i", 0, 5)
+    double_str.find("i",0,5)
     -1
 
 -  rfind(str, beg=0,end=len(string))，与 find()
@@ -118,13 +114,13 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 .. code:: python
 
     # 使用语法：str.rfind(str, beg=0, end=len(string))
-    >>> double_str = "my name is kele"
-    >>> double_str.rfind("h")
+    double_str = "my name is kele"
+    double_str.rfind("h")
     -1
-    >>> double_str.rfind("e")
+    double_str.rfind("e")
     14
     # 指定范围
-    >>> double_str.rfind("i",0,5)
+    double_str.rfind("i",0,5)
     -1
 
 -  index(str, beg=0, end=len(string))，与 find() 函数类似，但如果 str
@@ -133,16 +129,13 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 .. code:: python
 
     # 使用语法：str.index(str, beg=0, end=len(string))
-    >>> double_str = "my name is kele"
-    >>> double_str.index("h")      # 元素不在字符串中回报错
-    Traceback (most recent call last):
-    File "<input>", line 1, in <module>
-    ValueError: substring not found
+    double_str = "my name is kele"
+    double_str.index("h")      # 元素不在字符串中回报错
 
-    >>> double_str.index("e")
+    double_str.index("e")
     6
     # 指定范围
-    >>> double_str.index("a",0,5)
+    double_str.index("a", 0, 5)
     4
 
 -  rindex( str, beg=0, end=len(string))，类似于
@@ -151,16 +144,13 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 .. code:: python
 
     # 使用语法：str.rindex(str, beg=0, end=len(string))
-    >>> double_str = "my name is kele"
-    >>> double_str.rindex("h")      # 元素不在字符串中回报错
-    Traceback (most recent call last):
-    File "<input>", line 1, in <module>
-    ValueError: substring not found
+    double_str = "my name is kele"
+    double_str.rindex("h")      # 元素不在字符串中回报错
 
-    >>> double_str.rindex("e")
+    double_str.rindex("e")
     14
     # 指定范围
-    >>> double_str.rindex("a",0,5)
+    double_str.rindex("a", 0, 5)
     4
 
 -  count(str, beg= 0,end=len(string)），返回 str 在 string
@@ -170,13 +160,13 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 .. code:: python
 
     # 使用语法：str.count(str, beg=0, end=len(string))
-    >>> double_str = "my name is kele"
-    >>> double_str.count("h")
+    double_str = "my name is kele"
+    double_str.count("h")
     0
-    >>> double_str.count("e")
+    double_str.count("e")
     3
     # 指定范围
-    >>> double_str.count("e",0,7)
+    double_str.count("e", 0, 7)
     1
 
 -  lstrip([chars])，只处理字符串句首的空格或指定字符，其他位置忽略。
@@ -185,13 +175,13 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法：str.lstrip([chars\)
     # 处理句首空格
-    >>> double_str = "  句首 有两个空格"
-    >>> double_str.lstrip()     
+    double_str = "  句首 有两个空格"
+    double_str.lstrip()  
     '句首 有两个空格'
 
     # 处理句首指定字符
-    >>> double_str = "句首句首有一个空格"
-    >>> double_str.lstrip("句首")     
+    double_str = "句首句首有一个空格"
+    double_str.lstrip("句首")
     '有一个空格'
 
 -  rstrip([chars])，处理字符串末尾的空格或指定字符，其他位置忽略 。
@@ -200,13 +190,13 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法：str.rstrip([chars])
     # 处理句尾空格
-    >>> double_str = "句子末尾 有两个空格  "
-    >>> double_str.rstrip()     
+    double_str = "句子末尾 有两个空格  "
+    double_str.rstrip()     
     '句子末尾 有两个空格'
 
     # 处理句尾其他字符
-    >>> double_str = "句尾有一个空格空格"
-    >>> double_str.rstrip("空格")     
+    double_str = "句尾有一个空格空格"
+    double_str.rstrip("空格")     
     '句尾有一个'
 
 -  strip([chars])， 处理字符串两端的空格或指定字符，可视为 lstrip() 和
@@ -216,13 +206,13 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法：str.strip([chars])
     # 处理两端的空格
-    >>> double_str = " 句首 句尾均有空格 "
-    >>> double_str.strip()     
+    double_str = " 句首 句尾均有空格 "
+    double_str.strip()     
     '句首 句尾均有空格'
 
     # 处理两端的指定字符
-    >>> double_str = "你好有一个 空格你好"
-    >>> double_str.strip("你好")     
+    double_str = "你好有一个 空格你好"
+    double_str.strip("你好")     
     '有一个 空格'
 
 -  center(width, fillchar)，fillchar
@@ -233,12 +223,12 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法：str.center(width, fillchar)
     # 用法一：不指定填充字符，默认使用空字符填充
-    >>> double_str = "我想通过两侧填充来让自己变强"
-    >>> double_str.center(20)     
+    double_str = "我想通过两侧填充来让自己变强"
+    double_str.center(20)     
     '   我想通过两侧填充来让自己变强   '
 
     # 用法二：指定填充字符 【*】 
-    >>> double_str.center(20,"*")  
+    double_str.center(20, "*")  
     '***我想通过两侧填充来让自己变强***'
 
 -  ljust(width, fillchar))，fillchar
@@ -249,12 +239,12 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法：str.ljust(width, fillchar)
     # 用法一：不指定填充字符，默认使用空字符
-    >>> double_str = "我想通过右侧填充让自己变强"
-    >>> double_str.ljust(20)     
+    double_str = "我想通过右侧填充让自己变强"
+    double_str.ljust(20)     
     '我想通过右侧填充让自己变强       '
 
     # 用法二：指定填充字符 【*】 
-    >>> double_str.ljust(20,"*")  
+    double_str.ljust(20, "*")  
     '我想通过右侧填充让自己变强*******'
 
 -  rjust(width, fillchar)，fillchar
@@ -265,12 +255,12 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法：str.rjust(width, fillchar)
     # 用法一：不指定填充字符，默认使用空字符
-    >>> double_str = "我想通过左侧填充让自己变强"
-    >>> double_str.rjust(20)     
+    double_str = "我想通过左侧填充让自己变强"
+    double_str.rjust(20)     
     '       我想通过左侧填充让自己变强'
 
     # 用法二：指定填充字符 【*】 
-    >>> double_str.rjust(20,"*")  
+    double_str.rjust(20,"*")  
     '*******我想通过左侧填充让自己变强'
 
 -  zfill (width)，返回长度为 width 的字符串，原字符串右对齐，前面使用 0
@@ -279,8 +269,8 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 .. code:: python
 
     # 使用语法：str.zfill (width)
-    >>> double_str = "我想通过0填充让自己变强"
-    >>> double_str.zfill(20)     
+    double_str = "我想通过0填充让自己变强"
+    double_str.zfill(20)     
     '00000000我想通过0填充让自己变强'
 
 -  join(seq)，以指定字符串作为拼接字符，将 seq
@@ -290,19 +280,16 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法："[chars]".join(seq)
     # 尝试：拼接对象包含非字符串类型会报错
-    >>> seq_list =["我想", "合并", "自己", 1] 
-    >>> "".join(seq_list)
-    Traceback (most recent call last):
-    File "<input>", line 1, in <module>
-    TypeError: sequence item 3: expected str instance, int found
+    seq_list =["我想", "合并", "自己", 1] 
+    "".join(seq_list)
 
     # 用法一：不指定拼接字符，默认使用空字符
-    >>> seq_list =["我想", "合并", "自己"] 
-    >>> "".join(seq_list)     
+    seq_list =["我想", "合并", "自己"] 
+    "".join(seq_list)     
     '我想合并自己'
 
     # 用法二：指定拼接字符【***】
-    >>> "***".join(seq_list)     
+    "***".join(seq_list)     
     '我想***合并***自己'
 
 -  maketrans(input,
@@ -312,19 +299,16 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
     # 使用语法：str.maketrans(input, out)
     # 注意：两个字符串的长度必须相同，否则会报如下错误。
-    >>> input_str = "预备开始，1234567"
-    >>> out_str = "哆来咪发唆啦西"
-    >>> tran_str = str.maketrans(input_str, out_str)
-    Traceback (most recent call last):
-    File "<input>", line 1, in <module>
-    ValueError: the first two maketrans arguments must have equal length
+    input_str = "预备开始，1234567"
+    out_str = "哆来咪发唆啦西"
+    tran_str = str.maketrans(input_str, out_str)
 
     # 正确的使用方式
-    >>> input_str = "1234567"
-    >>> out_str = "哆来咪发唆啦西"
-    >>> tran_str = str.maketrans(input_str, out_str)
-    >>> waiter_tran = "预备开始，1234567"
-    >>> waiter_tran.translate(tran_str)
+    input_str = "1234567"
+    out_str = "哆来咪发唆啦西"
+    tran_str = str.maketrans(input_str, out_str)
+    waiter_tran = "预备开始，1234567"
+    waiter_tran.translate(tran_str)
     '预备开始，哆来咪发唆啦西'
 
 **总结**
@@ -339,15 +323,10 @@ Python中的字符串使用单引号 ``''`` 或双引号 ``""`` 括起来，同�
 
 .. code:: python
 
-    >>> double_str = " 我是等待链式 调用处理的字符串 \n"
-    >>> double_str.replace(" ", "").strip()
+    double_str = " 我是等待链式 调用处理的字符串 \n"
+    double_str.replace(" ", "").strip()
     '我是等待链式调用处理的字符串'
 
 3. index、find 效果是一样的，但是 find 有容错机制，使用时优先选择。
 
 4. 今天先介绍通用类自建函数的相关操作，后续将介绍其他类函数的相关操作。
-
-.. figure:: https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg
-   :alt: 微信公众号
-
-   微信公众号
