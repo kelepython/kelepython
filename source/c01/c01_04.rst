@@ -1,0 +1,467 @@
+1.4 Python 列表操作，节后大放送
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**前言**
+^^^^^^^^
+
+Hi，大家好，我是可乐，今天介绍一下 Python ``列表``
+的相关操作，并附上相关案例代码，便于学习、理解。
+
+.. figure:: https://i.loli.net/2020/04/30/UYbiOzXv658Jfjl.jpg
+   :alt: 
+
+**列表简介**
+^^^^^^^^^^^^
+
+``列表 (List)`` 是 Python
+中最基本的数据类型之一，列表中的每个元素均会分配一个数字，用以记录位置，我们称之为
+``索引 (Indexes)``\ ，索引值从 0 开始，依次往后计数。
+
+列表使用中括号- ``[]`` 包裹，元素之间使用逗号- ``，``
+分隔，其元素可以是数字、字符串、列表等其他任何数据类型。
+
+列表同样支持索引、更新、删除、嵌套、拼接、成员检查、截取、追加、扩展、排序等相关操作，下面我们通过案例来学习。
+
+**初识列表**
+^^^^^^^^^^^^
+
+1. 使用中括号定义一个空列表
+
+.. code:: python
+
+    >>> def_list = []
+    >>> def_list
+    []
+    >>> type(def_list)  # type 查看数据类型
+    <class 'list'>
+
+2. 使用内置方法 ``list()`` 定义一个空列表
+
+.. code:: python
+
+    >>> def_list = list()
+    >>> def_list
+    []
+    >>> type(def_list)  # type 查看数据类型
+    <class 'list'>
+
+3. 使用索引获取列表元素
+
+.. code:: python
+
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> def_list[0]    # 取第一个元素
+    'my'
+    >>> def_list[-1]   # -1 表示取最后一个
+    'kele'
+    >>> def_list[5]    # 超出索引值会报错
+    Traceback (most recent call last):
+     File "<input>", line 1, in <module>
+    IndexError: list index out of range
+
+4. 通过索引更新列表元素
+
+.. code:: python
+
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> def_list[-1] = "xuebi"  # 更新对应索引元素的值
+    >>> def_list
+    ['my', 'name', 'is', 'xuebi']
+
+5. 使用 ``del`` 语句删除列表元素
+
+.. code:: python
+
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> del def_list[0]     # 删除第一个元素
+    >>> def_list
+    ['name', 'is', 'kele']
+
+    >>> def_list = ["my", "name", "is", "kele"]
+    # 删除第一个元素 "my"
+    # 再删除新列表的第二个元素 "is"
+    >>> del def_list[0], def_list[1]    
+    >>> def_list
+    ['name', 'kele']
+
+6. 列表也可嵌套
+
+.. code:: python
+
+    >>> nesting_list = ["my", "name", ["is", "kele"]]
+    >>> type(nesting_list)
+    <class 'list'>
+    >>> nesting_list[2]
+    ['is', 'kele']
+    # 怎么获取嵌套列表中的元素？
+    >>> nesting_list[2][0]
+    'is'
+
+**基础操作符**
+^^^^^^^^^^^^^^
+
+列表基础操作符可参照下表：
+
++-----------------+------------+
+| 符号            | 说明       |
++=================+============+
+| ``+``           | 列表拼接   |
++-----------------+------------+
+| \*              | 重复元素   |
++-----------------+------------+
+| in / not in     | 成员判断   |
++-----------------+------------+
+| []              | 索引取值   |
++-----------------+------------+
+| [index:index]   | 列表截取   |
++-----------------+------------+
+
+1. 使用 ``+`` 拼接列表
+
+.. code:: python
+
+    >>> def_list1 = ["my", "name"]
+    >>> def_list2 = ["is", "kele"]
+    >>> def_list1 + def_list2
+    ['my', 'name', 'is', 'kele']
+
+2. 使用 ``*`` 重复列表元素
+
+.. code:: python
+
+    >>> ["repeat two"] * 2
+    ['repeat two', 'repeat two']
+
+3. 判断元素是否在列表中，是返回 True，否则返回 False
+
+.. code:: python
+
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> "kele" in def_list
+    True
+    >>> "xuebi" in def_list
+    False
+    >>> "kele" not in def_list
+    False
+    >>> "xuebi" not in def_list
+    True
+
+4. 使用索引取值
+
+.. code:: python
+
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> def_list[-1]   # -1 表示取最后一个
+    'kele'
+    >>> def_list[5]    # 超出索引值会报错
+    Traceback (most recent call last):
+     File "<input>", line 1, in <module>
+    IndexError: list index out of range
+
+5. 使用 ``:`` 截取列表，遵循\ **左开右闭**\ 原则
+
+.. code:: python
+
+    >>> def_list = ["Hi", "my", "name", "is", "kele"]
+    # 截取第一至第二个元素（不包括第二个元素）
+    >>> def_list[1:2]    
+    ['my']
+    # 截取第一至第四个元素（不包括第四个元素）
+    >>> def_list[1:4]    
+    ['my', 'name', 'is']
+    # 超出索引值并不会报错
+    >>> def_list[1:10]    
+    ['my', 'name', 'is', 'kele']
+    # 全列表截取（复制列表）
+    >>> def_list[:]    
+    ['my', 'name', 'is', 'kele']
+    # 指定步长，截取列表
+    # 步长为 2 ，表示每两个元素取一个元素
+    >>> def_list[0:5:2]    
+    ['Hi', 'name', 'kele']
+    # 怎么反转列表？
+    >>> def_list[::-1] 
+    ['kele', 'is', 'name', 'my', 'Hi']
+
+**列表基础函数**
+^^^^^^^^^^^^^^^^
+
+列表基础函数可参照下表：
+
++-------------+------------------------+
+| 函数        | 说明                   |
++=============+========================+
+| len(list)   | 计算列表的长度         |
++-------------+------------------------+
+| max(list)   | 返回列表中最大的元素   |
++-------------+------------------------+
+| min(list)   | 返回列表中最小的元素   |
++-------------+------------------------+
+| list(seq)   | 将其他序列转换为列表   |
++-------------+------------------------+
+
+1. 计算列表长度
+
+.. code:: python
+
+    >>> def_list = num_list = [1, 4, 3, 11, 7, 8, 15]
+    >>> len(num_list)
+    7
+
+2. 返回列表最大值、最小值
+
+.. code:: python
+
+    >>> def_list = num_list = [1, 4, 3, 11, 7, 8, 15]
+    >>> max(num_list)
+    15
+    >>> min(num_list)
+    1
+
+3. 将其他序列列转换为列表
+
+.. code:: python
+
+    >>> str_list = "Hi_kele"
+    >>> list(str_list)
+    ['H', 'i', '_', 'k', 'e', 'l', 'e']
+    >>> num_list = "123456"
+    >>> list(num_list)
+    ['1', '2', '3', '4', '5', '6']
+    # 数字类型为不可迭代对象，所以使用时会报错
+    >>> num_list = 123456
+    >>> list(num_list)
+    Traceback (most recent call last):
+     File "<input>", line 1, in <module>
+    TypeError: 'int' object is not iterable
+
+**列表自建方法**
+^^^^^^^^^^^^^^^^
+
+``Python`` 中的 ``list``
+类提供了列表操作相关的自建方法，需要时直接调用即可。
+
+1. 使用 ``append`` 方法给列表末尾追加元素
+
+.. code:: python
+
+    # 使用语法：list.append(obj)
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> def_list.append(1)
+    >>> def_list
+    ['my', 'name', 'is', 'kele', '1']
+
+2. 使用 ``count`` 统计某个元素在列表中出现的总次数
+
+.. code:: python
+
+    # 使用语法：list.count(obj)
+    >>> def_list = ["kele", "name", "is", "kele"]
+    >>> def_list.count("kele")
+    2
+    >>> def_list.count("name")
+    1
+    >>> def_list.count("xuebi")
+    0
+
+3. 使用 ``index`` 方法寻找某个元素在列表中第一次出现的索引值
+
+.. code:: python
+
+    # 使用语法：list.index(obj)
+    >>> def_list = ["kele", "name", "is", "kele"]
+    >>> def_list.index("kele")
+    0
+    >>> def_list.index("name")
+    1
+    # 元素不在列表中会报错
+    >>> def_list.count("xuebi")
+    Traceback (most recent call last):
+     File "<input>", line 1, in <module>
+    ValueError: 'xuebi' is not in list
+
+4. 使用 ``insert`` 方法在指定位置插入元素
+
+.. code:: python
+
+    # 使用语法：list.insert(index, obj)
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> def_list.insert(0, "python")
+    >>> def_list
+    ['python', 'my', 'name', 'is', 'kele']
+    # 超出索引值不报错，将元素插入到列表末尾
+    >>> def_list.insert(10, "xuebi")
+    >>> def_list
+    ['python', 'my', 'name', 'is', 'kele', 'xuebi']
+
+5. 使用 ``pop`` 方法弹出列表中的某个元素，默认弹出最后一个元素
+
+.. code:: python
+
+    # 使用语法：list.pop(index=-1)
+    >>> def_list = ["my", "name", "is", "kele"]
+    # 返回弹出的元素
+    >>> def_list.pop()
+    'kele'
+    >>> def_list
+    ['my', 'name', 'is']
+    >>> def_list.pop(0)
+    'my'
+    >>> def_list
+    ['name', 'is']
+    # 超出索引值会报错
+    >>> def_list.pop(10)
+    Traceback (most recent call last):
+     File "<input>", line 1, in <module>
+    IndexError: pop index out of range
+
+6. 使用 ``remove`` 方法删除列表中的某个元素，默认删除第一次出现的元素
+
+.. code:: python
+
+    # 使用语法：list.remove(obj)
+    >>> def_list = ["kele", "name", "is", "kele"]
+    >>> def_list.remove("kele")
+    >>> def_list
+    ['name', 'is', 'kele']
+    >>> def_list.remove("xuebi")
+    # 元素不存在会报错
+    Traceback (most recent call last):
+     File "<input>", line 1, in <module>
+    ValueError: list.remove(x): x not in list
+
+7. 使用 ``reverse`` 方法反转列表
+
+.. code:: python
+
+    # 使用语法：list.reverse()
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> def_list.reverse()
+    >>> def_list
+    ['kele', 'is', 'name', 'my']
+
+8. 使用 ``sort`` 方法对列表进行排序，使用语法
+   ``list.sort(cmp=None, key=None, reverse=False)`` 参数说明：
+
+-  cmp -- 可选参数，如果指定该参数，则使用该参数的方法进行排序。
+-  key --
+   主要用于比较元素，只有一个参数，指定可迭代对象中的一个元素进行排序。
+-  reverse -- 排序规则，reverse = True 降序， reverse = False
+   升序（默认）。
+
+.. code:: python
+
+    # 使用语法：list.sort(cmp=None, key=None, reverse=False)
+    # 不指定参数，默认为降序
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> def_list.sort()
+    >>> def_list
+    ['is', 'kele', 'my', 'name']
+
+    # 指定为升序
+    >>> def_list.sort(reverse=True)
+    >>> def_list
+    ['name', 'my', 'kele', 'is']
+
+    # 指定可迭代对象中的一个元素进行排序
+    >>> def_list = ["my2", "name8", "is5", "keke9"]
+    # 按照序列的最后一个元素排序
+    >>> def key_func(seq):
+    ...     return seq[-1]
+    >>> def_list.sort(key=key_func)
+    >>> def_list
+    # 按照每个元素末尾的数字排序
+    ['my2', 'is5', 'name8', 'keke9']
+    # 思考：怎么实现两种规则的排序，如既按照元素中的字母排序，又按照元素中的数字排序？
+
+9. 使用 ``extend`` 方法扩展列表
+
+.. code:: python
+
+    # 使用语法：list.extend(seq)
+    >>> def_list1 = ["my", "name"]
+    >>> def_list2 = ["is", "kele"]
+    >>> def_list1.extend(def_list2)
+    >>> def_list1
+    ['my', 'name', 'is', 'kele']
+
+10. 使用 ``copy`` 方法复制列表
+
+.. code:: python
+
+    # 使用语法：list.copy()
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> def_list.copy()
+    ['my', 'name', 'is', 'kele']
+
+11. 使用 ``clear`` 方法清空列表元素
+
+.. code:: python
+
+    # 使用语法：list.clear()
+    >>> def_list = ["my", "name", "is", "kele"]
+    >>> def_list.clear()
+    >>> def_list
+    []
+
+**列表扩展**
+^^^^^^^^^^^^
+
+1. 使用大于号 ``>`` 、小于号\ ``<`` 、等于号\ ``==``
+   比较两个列表的大小。
+
+.. code:: python
+
+    """比较原理：
+    从第一个元素开始比较，若相等，则继续比较，返回第一个不相等元素比较的结果。
+    若所有元素比较均相等，且列表长度一样则两列表相等，否则长度较大的列表大。
+    """
+    # 判断两列表相等
+    >>> ["a", "b"] == ["a", "b"] 
+    True
+    >>> ["a", "b"] == ["a", "c"] 
+    False
+
+    # 判断两列表大于或者等小于
+    >>> ["a", "c"] > ["a", "b", "c"]
+    True
+    >>> ["a", "b"] < ["a", "b", "c"] 
+    True
+
+2. 使用 ``and`` 、 ``or`` 进行对列表表达式进行逻辑判断 。
+
+.. code:: python
+
+    """判断原理：对表达式判断进行逻辑判断
+    1、and - 有假则为假
+    2、 or - 有真则为真
+    """
+    # and
+    >>> ["a"] == ["a"] and ["a"] == ["a"]
+    True
+    >>> ["a"] == ["a"] and ["a"] == ["b"]
+    False
+
+    # or
+    >>> ["a"] == ["a"] or ["a"] == ["a"]
+    True
+    >>> ["a"] == ["a"] or ["a"] == ["b"] 
+    True
+
+**总结**
+^^^^^^^^
+
+1. 列表作为 Python
+   最基本的数据类型之一，在工作中十分常用，一般与其他数据类型搭配使用，用于构建数据结构。
+2. 定义列表可直接使用 ``[]``, 也可选择 ``list()`` 方法，个人偏向于前者。
+3. 基础操作符中的列表截取、或称之为切片，很有意思，建议多探讨、研究。
+4. 使用 ``list()``
+   方法转换其他序列时，转换对象需为可迭代对象，否则会报错。
+5. 自建方法均比较常用，索引的相关操作，需考虑\ **索引值范围**\ ，调用方式有两种，一是使用关键字
+   ``list.方法(参数)``\ ，二是使用
+   ``定义的列表变量名.方法(参数)``\ ，其原理都是调用 ``Python`` 中的
+   ``list`` 类中的方法，案例中使用后者。
+6. 文中难免会出现一些描述不当之处（尽管我已反复检查多次），欢迎在留言区指正，列表相关的知识点也可进行分享。
+
+.. figure:: https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg
+   :alt:

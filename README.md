@@ -5,6 +5,7 @@
 - 1.1 [一文搞定 Python 字符串操作（上）](<https://kelepython.readthedocs.io/en/latest/c01/c01_01.html>)
 - 1.2 [一文搞定 Python 字符串操作（下）](<https://kelepython.readthedocs.io/en/latest/c01/c01_02.html>)
 - 1.3 [Python 字符串，劳动节前夕加餐 ](<https://kelepython.readthedocs.io/en/latest/c01/c01_03.html>)
+- 1.4 [Python 列表操作，节后大放送 ](<https://kelepython.readthedocs.io/en/latest/c01/c01_04.html>)
 ---
 ![](https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg)
 
