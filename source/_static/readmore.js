@@ -39,8 +39,8 @@ var setIdTimer = setInterval(function () {
             btw.init({
                 id: id,
                 blogId: '15406-1578143418297-890',
-                name: 'Go编程时光',
-                qrcode: 'http://image.python-online.cn/20200315163037.png',
+                name: '可乐python说',
+                qrcode: 'https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg',
                 keyword: 'vip'
             });
         }
