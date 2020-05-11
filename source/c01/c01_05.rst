@@ -1,0 +1,421 @@
+1.5 Python 字典操作，母亲节加餐
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**前言**
+^^^^^^^^
+
+Hi，大家好，我是可乐，今天介绍一下 Python ``字典``
+的相关知识，并附上相关案例代码，便于学习、理解。
+
+.. figure:: https://i.loli.net/2020/04/30/UYbiOzXv658Jfjl.jpg
+   :alt: 
+
+**字典简介**
+^^^^^^^^^^^^
+
+``字典 (Dictionary)`` 是 Python
+中常用的数据结构之一，它用于存放具有映射关系的数据，其灵活性极高，可存储任意类型的数据对象，它有时也被称作\ **关联数组或哈希表**\ 。
+
+字典以\ ``键值对`` 的形式存储数据，每个键值对以冒号 ``:`` 连接，
+冒号左侧为\ ``键(key)``\ ，右侧为\ ``值(value)``\ ，且键与值都使用单引号
+``''`` 或 双引号\ ``""``\ 包裹。
+
+字典使用大括号- ``{}`` 包裹，键值对之间使用逗号- ``，``
+分隔，与列表不同，字典中的元素是无序的。
+
+字典支持更新、删除、嵌套、拼接、成员检查、追加、扩展、排序等相关操作，下面我们通过案例来学习。
+
+**初识字典**
+^^^^^^^^^^^^
+
+1、使用大括号定义一个空字典。
+
+.. code:: python
+
+    >>> def_dict = {}
+    >>> def_dict
+    {}
+    # type 查看数据类型
+    >>> type(def_dict)  
+    <class 'dict'>
+
+2、使用内置方法 ``dict()`` 定义一个空字典（推荐使用）。
+
+.. code:: python
+
+    >>> def_dict = dict()
+    >>> def_dict
+    {}
+    # type 查看数据类型
+    >>> type(def_dict)  
+    <class 'dict'>
+
+3、字典也可嵌套。
+
+.. code:: python
+
+    >>> def_dict = {"nesting": {"name": "kele"}}
+    # 怎么取嵌套字典中的元素
+    >>> def_dict["nesting"]["name"]
+    'kele'
+
+4、字典特性之键必须唯一。
+
+.. code:: python
+
+    >>> def_dict = {"name": "kele", "name": "xuebi"}
+    >>> def_dict
+    # 若键不唯一，仅会记录最后一次的值
+    {'name': 'xuebi'}
+
+5、字典特性之键必须不可变。
+
+.. code:: python
+
+    # Python 中数字、元组、字符串为不可变类型
+    # Python 中列表、字典、集合为可变类型
+    >>> def_dict = {"name": "kele"}
+    >>> def_dict = {1: "kele"}
+    >>> def_dict = {("name", "kele"): "kele"}
+    # 键为可变类型会报错
+    >>> def_dict = {["name", "kele"]: "kele"}
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    TypeError: unhashable type: 'list'
+
+**字典基本操作**
+^^^^^^^^^^^^^^^^
+
+1、使用键获取字典中的值。
+
+.. code:: python
+
+    >>> def_dict = {"name": "kele", "hobby": "Python"}
+    # 获取 name 的 value
+    >>> def_dict["name"]    
+    'kele'
+    # 获取 hobby 的 value
+    >>> def_dict["hobby"]    
+    'Python'
+    # key 值不存在会报错
+    >>> def_dict["age"]   
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    KeyError: 'age'
+
+2、使用 ``get`` 方法获取字典中的值。
+
+.. code:: python
+
+    >>> def_dict = {"name": "kele", "hobby": "Python"}
+    # 获取 name 的 value
+    >>> def_dict.get("name")
+    'kele'
+    # 获取 hobby 的 value
+    >>> def_dict.get("hobby")    
+    'Python'
+
+3、使用键更新字典中的值。
+
+.. code:: python
+
+    >>> def_dict = {"name": "kele"}
+    # key 存在则修改
+    >>> def_dict["name"] = "xuebi"
+    >>> def_dict
+    {'name': 'xuebi'}
+    # key 不存在则新增
+    >>> def_dict["age"] = 18
+    >>> def_dict
+    {'name': 'xuebi', 'hobby': 'Python', 'age': 18}
+
+4、使用 ``del`` 语句删除字典元素。
+
+.. code:: python
+
+    >>> def_dict = {"name": "kele", "hobby": "Python"}
+    >>> del def_dict["hobby"]
+    >>> def_dict
+    {'name': 'kele'}
+
+5、使用 ``in`` 、\ ``not in`` 判断指定 key 值是否在字典中，是则返回
+True，否则返回 False。
+
+.. code:: python
+
+    >>> def_dict = {"name": "kele"}
+    # 字典是基于 key 值来判断的
+    >>> "name" in def_dict
+    True
+    >>> "name" not in def_dict
+    False
+
+**字典基础方法**
+^^^^^^^^^^^^^^^^
+
+字典基础方法可参照下表：
+
++--------------+----------------------+
+| 方法         | 说明                 |
++==============+======================+
+| len(dict)    | 计算字典键值对数量   |
++--------------+----------------------+
+| str(dict)    | 将字典转换为字符串   |
++--------------+----------------------+
+| type(dict)   | 查看数据类型         |
++--------------+----------------------+
+
+1、使用 ``len`` 方法计算字典长度。
+
+.. code:: python
+
+    >>> def_dict = {"name": "kele", "hobby": "Python"}
+    >>> len(def_dict)
+    2
+
+2、使用 ``str`` 方法，将字典转换为字符串。
+
+.. code:: python
+
+    >>> def_dict = {"name": "kele"}
+    >>> str(def_dict)
+    "{'name': 'kele'}"
+
+3、使用 ``type`` 方法查看数据类型。
+
+.. code:: python
+
+    >>> def_dict = {"name": "kele"}
+    >>> type(def_dict)
+    # 字典为 dict 类型
+    <class 'dict'>
+
+**字典内置方法**
+^^^^^^^^^^^^^^^^
+
+``Python`` 中的 ``dict``
+类提供了字典操作相关的内置方法，使用时直接调用即可，下面按照类中方法定义的顺序演示。
+
+1、使用 ``clear`` 方法清空字典。
+
+.. code:: python
+
+    # 使用语法：dict.clear()
+    >>> def_dict = {"name": "kele"}
+    >>> def_dict.clear()
+    >>> def_dict
+    {}
+
+2、使用 ``copy`` 方法复制字典。
+
+.. code:: python
+
+    # 使用语法：dict.copy()
+    >>> def_dict = {"name": "kele"}
+    >>> def_dict.copy()
+    {'name': 'kele'}
+
+3、使用 ``fromkeys`` 方法，创建新字典，以序列 ``seq``
+中的元素作为键，以键对应的初始值 ``value`` 作为值。
+
+.. code:: python
+
+    # 使用语法：dict.fromkeys(seq[, value])
+    >>> seq = ('name', 'age')
+    # 不指定 value 值，默认为 None
+    >>> dict.fromkeys(seq)
+    {'name': None, 'age': None}
+    # 不指定 value 值
+    >>> dict.fromkeys(seq, "kele")
+    {'name': 'kele', 'age': 'kele'}
+
+4、使用 ``get`` 方法，获取字典元素。
+
+.. code:: python
+
+    # 使用语法：dict.get(key, default=None)
+    >>> def_dict = {"name": "kele"}
+    >>> def_dict.get("name")
+    'kele'
+    # key 值不存在不会报错
+    >>> print(def_dict.get("age"))
+    None
+    # get 方法还可指定默认值
+    >>> def_dict.get("age", 18)
+    18
+
+5、使用 ``items`` 方法，获取字典所有键值对数据。
+
+.. code:: python
+
+    # 使用语法：dict.items()
+    >>> def_dict = {"name": "kele"}
+    >>> def_dict.items()
+    # 返回一个 dict_items 对象，可转为列表
+    dict_items([('name', 'kele')])
+    >>> list(def_dict.items())
+    [('name', 'kele')]
+
+6、使用 ``keys`` 方法，获取字典所有的键。
+
+.. code:: python
+
+    # 使用语法：dict.keys()
+    >>> def_dict = {"name": "kele", "hobby": "Python"}
+    >>> def_dict.keys()
+    # 返回一个 dict_keys 对象，可转为列表
+    dict_items([('name', 'kele')])
+    >>> list(def_dict.keys())
+    ['name', 'hobby']
+
+7、使用 ``pop`` 方法，删除字典指定键的键值对数据，返回删除键对应的值。
+
+.. code:: python
+
+    # 使用语法：dict.pop(key[,default])
+    >>> def_dict = {"name": "kele", "hobby": "Python"}
+    >>> def_dict.pop()
+    # 必须指定 key 值，否则报错 
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    TypeError: pop expected at least 1 arguments, got 0
+    # 指定 key 值，返回其对应的值
+    >>> def_dict.pop("hobby")
+    'Python'
+    # key 不存在会报错
+    >>> def_dict.pop("age")
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    KeyError: 'age'
+    # key 不存在，给定默认值可避免报错
+    >>> def_dict.pop("age", 18)
+    18
+
+8、使用 ``popitem`` 方法，删除字典中最后一个键值对数据并将其返回。
+
+.. code:: python
+
+    # 使用语法：dict.popitem()
+    >>> def_dict = {"name": "kele", "hobby": "Python"}
+    >>> def_dict.popitem()
+    ('hobby', 'Python')
+    # 原字典变成了这样
+    >>> def_dict
+    {'name': 'kele'}
+    # 再调用一次
+    >>> def_dict.popitem()
+    ('name', 'kele')
+    # 字典为空时调用会报错
+    >>> def_dict.popitem()
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    KeyError: 'popitem(): dictionary is empty'
+
+9、使用 ``setdefault`` 方法，获取字典元素，与 ``get`` 方法类似。
+
+.. code:: python
+
+    # 使用语法：dict.setdefault(key, default=None)
+    >>> def_dict = {"name": "kele"}
+    >>> def_dict.setdefault("name")
+    'kele'
+    # key 值不存在不会报错
+    >>> print(def_dict.setdefault("age"))
+    None
+    # setdefault 方法也可指定默认值
+    >>> def_dict.setdefault("age", 18)
+    18
+    # 那它与 get 方法有什么区别呢？
+    >>> def_dict = {"name": "kele"}
+    # key 不存在时，get 方法不会进行新增操作
+    >>> def_dict.get("age", 18)
+    >>> def_dict
+    {"name": "kele"}
+    # key 不存在时，setdefault 方法会进行新增操作
+    >>> def_dict.setdefault("age", 18)
+    >>> def_dict
+    {'name': 'kele', 'age': 18}
+
+10、使用 ``update`` 方法，更新字典。
+
+.. code:: python
+
+    # 使用语法：dict.update(dict2)
+    >>> def_dict = {"name": "kele"}
+    >>> def_dict2 = {"age": "18"}
+    >>> def_dict.update(def_dict2)
+    # 将 def_dict2 中的数据更新至 def_dict 中
+    >>> def_dict 
+    {'name': 'kele', 'age': '18'}
+
+11、使用 ``values`` 方法，获取字典中所有的值。
+
+.. code:: python
+
+    # 使用语法：dict.values()
+    >>> def_dict = {"name": "kele", "hobby": "Python"}
+    >>> def_dict.values()
+    # dict_values(['kele', 'Python'])
+    >>> type(def_dict.values())
+    # 返回一个 dict_values 对象，可转为列表
+    <class 'dict_values'>
+    >>> list(def_dict.keys())
+    ['kele', 'Python']
+
+**字典扩展**
+^^^^^^^^^^^^
+
+1、使用 ``sorted`` 函数对字典的键或值进行排序。
+
+.. code:: python
+
+    >>> def_dict = {"a": 2, "c": 1, "b":3}
+    # 直接调用，默认对键进行排序
+    # 返回排序后键组成的列表
+    >>> sorted(def_dict)
+    ['a', 'b', 'c']
+    # 使用匿名函数 lambda 按照键排序
+    >>> sorted(def_dict.items(), key=lambda x:x[0])
+    [('a', 2), ('b', 3), ('c', 1)]
+    # 默认为升序，指定为降序
+    >>> sorted(def_dict.items(), key=lambda x:x[0], reverse=True)
+    # 使用匿名函数 lambda 按照值排序
+    >>> sorted(def_dict.items(), key=lambda x:x[1])
+    [('c', 1), ('a', 2), ('b', 3)]
+    # 原字典并不会改变
+    >>> def_dict
+    {"a": 2, "c": 1, "b":3}
+
+2、使用 ``sorted`` 函数对字典组成的列表，进行多个键的排序。
+
+.. code:: python
+
+    >>> def_list = [{ "name" : "kele", "age" : 18}, 
+                    { "name" : "xuebi", "age" : 7 }, 
+                    { "name" : "tea", "age" : 20 }, 
+                    { "name" : "wine" , "age" : 20}] 
+    # 先按 age 排序，再按 name 排序
+    # 若 age 相同，再按 name 排序
+    >>> sorted(def_list,key=lambda x:(x["age"], x["name"]))
+    [{'name': 'xuebi', 'age': 7}, 
+     {'name': 'kele', 'age': 18}, 
+     {'name': 'tea', 'age': 20}, 
+     {'name': 'wine', 'age': 20}]
+
+**总结**
+^^^^^^^^
+
+1. 字典是 Python 中除列表以外， 最灵活的数据结构，工作中也十分常用。
+2. 定义字典可直接使用大括号- ``{}``\ ， 也可选择 ``dict()``
+   方法，后者更加规范。
+3. 字典内置方法均比较常用，其中 ``get`` 方法与 ``setdefault``
+   方法类似，区别在于，当字典的键不存在时，后者会新增元素，前者不会。
+4. 文中难免会出现一些描述不当之处（尽管我已反复检查多次），欢迎在留言区指正，也可分享字典相关的知识。
+5. Python
+   系列相关文章已全部更新至个人博客：kelepython.rtfd.io，欢迎前往阅读。
+6. 为了便于沟通交流，我已创建微信学习交流群，欢迎在后台回复 ``加群``
+   加入我们。
+7. 最后，祝所有伟大的母亲节日快乐、身体健康、工作顺利！
+
+.. figure:: https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg
+   :alt:
