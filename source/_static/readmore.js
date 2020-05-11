@@ -38,7 +38,7 @@ var setIdTimer = setInterval(function () {
             btw = new BTWPlugin();
             btw.init({
                 id: id,
-                blogId: '15406-1578143418297-890',
+                blogId: '22069-1589167363119-715',
                 name: '可乐python说',
                 qrcode: 'https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg',
                 keyword: 'vip'
