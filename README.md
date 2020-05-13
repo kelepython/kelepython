@@ -7,6 +7,7 @@
 - 1.3 [Python 字符串，劳动节前夕加餐 ](<https://kelepython.readthedocs.io/en/latest/c01/c01_03.html>)
 - 1.4 [Python 列表操作，节后大放送 ](<https://kelepython.readthedocs.io/en/latest/c01/c01_04.html>)
 - 1.5 [Python 字典操作，母亲节加餐 ](<https://kelepython.readthedocs.io/en/latest/c01/c01_05.html>)
+- 1.5 [元组(Tuple) | 不可改变的 Python 数据类型 ](<https://kelepython.readthedocs.io/en/latest/c01/c01_06.html>)
 ---
 ![](https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg)
 

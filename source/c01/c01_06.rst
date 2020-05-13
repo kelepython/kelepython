@@ -1,0 +1,367 @@
+1.6 元组(Tuple) \| 不可改变的 Python 数据类型
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**前言**
+^^^^^^^^
+
+Hi，大家好，我是可乐，到目前为止，我们已介绍了
+``字符串``\ 、\ ``列表``\ 、\ ``字典`` 的相关知识， 今天介绍一下 Python
+``元组`` 的相关知识，并附上相应的案例代码，便于学习、吸收。
+
+.. figure:: https://i.loli.net/2020/05/12/MBAIgVfzYk1RG5v.jpg
+   :alt: 
+
+**元组简介**
+^^^^^^^^^^^^
+
+``元组 (Tuple)`` 是 Python
+中基本数据结构之一，与列表类似，但元组中的元素不允许被修改，因此元组也被称作\ **只读列表**\ 。
+
+元组使用小括号- ``()`` 包裹，元素之间使用逗号- ``，``
+分隔，元组中的元素可以是字符串、数字、列表、元组等其他数据类型。
+
+元组不支持修改，但支持索引、拼接、成员检查、重复等相关操作，下面我们通过案例来学习。
+
+**初识元组**
+^^^^^^^^^^^^
+
+1、使用小括号定义一个空元组。
+
+.. code:: python
+
+    >>> def_tuple = ()
+    >>> def_tuple
+    ()
+    # type 查看数据类型
+    >>> type(def_tuple)
+    <class 'tuple'>
+
+2、使用 ``tuple()`` 方法定义一个空元组。
+
+.. code:: python
+
+    >>> def_tuple = tuple()
+    >>> def_tuple
+    ()
+    # type 查看数据类型
+    >>> type(def_tuple)  
+    <class 'tuple'>
+
+3、使用索引获取元组元素。
+
+.. code:: python
+
+    >>> def_tuple = ("kele", "tea")
+    >>> def_tuple[0]
+    'kele'
+
+4、元组也可嵌套。
+
+.. code:: python
+
+    >>> def_tuple = ("kele", ("xuebi", "tea"))
+    >>> def_tuple[1]
+    ("xuebi", "tea")
+    # 怎么取嵌套元组中的元素？
+    >>> def_tuple[1][0]
+    'xuebi'
+
+5、元组特性之\ **元素不允许被修改**\ ，但其元素的元素为可变类型时则支持修改。
+
+.. code:: python
+
+    >>> def_tuple = ("kele", "tea")
+    >>> def_dict[0] = "xuebi"
+    # 试图修改元组中的元素会报错
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    TypeError: 'tuple' object does not support item assignment
+    # 元组第二个元素是一个列表，可直接通过索引修改
+    >>> def_tuple = ("kele", ["tea", "kele"])
+    >>> def_tuple[1][1] = "xuebi"
+    >>> def_tuple
+    ('kele', ['tea', 'xuebi'])
+
+6、元组特性之\ **元素不能被删除，但可删除整个元组**\ 。
+
+.. code:: python
+
+    >>> def_tuple = ("kele", "tea")
+    >>> del def_tuple[0]
+    # 试图删除元组中的元素会报错
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    TypeError: 'tuple' object doesn't support item deletion
+    # 使用 del 删除整个元组
+    >>> del def_tuple
+
+7、元组特性之\ **任何无符号的对象，以逗号分割，默认被视为元组**\ 。
+
+.. code:: python
+
+    >>> any_unsigned_objects = "kele", "age", 18 
+    >>> any_unsigned_objects
+    ('kele', 'age', 18)
+    >>> type(any_unsigned_objects)
+    <class 'tuple'>
+
+**元组基本操作符**
+^^^^^^^^^^^^^^^^^^
+
++-----------------+----------------+
+| 操作符          | 说明           |
++=================+================+
+| \+              | 连接元组元素   |
++-----------------+----------------+
+| \*              | 重复元组元素   |
++-----------------+----------------+
+| in / not in     | 成员判断       |
++-----------------+----------------+
+| [index:index]   | 元组切片       |
++-----------------+----------------+
+
+1、使用 ``+`` 连接元组元素。
+
+.. code:: python
+
+    >>> def_tuple1 = ("kele", "tea")
+    >>> def_tuple2 = ("xuebi", "coffee")
+    >>> def_tuple1 +  def_tuple2
+    ('kele', 'tea', 'xuebi', 'coffee')
+
+2、使用 ``*`` 重复元组元素。
+
+.. code:: python
+
+    >>> def_tuple = ("kele", "tea")
+    >>> def_tuple * 2
+    ('kele', 'tea', 'kele', 'tea')
+
+3、使用 ``in`` 、\ ``not in`` 判断元素是否在元组中，是则返回 ``True`` ，
+否则返回 ``False`` 。
+
+.. code:: python
+
+    >>> def_tuple = ("kele", "python")
+    >>> "kele" in def_tuple
+    True
+    >>> "python" not in def_tuple
+    False
+
+4、使用 ``[:]`` 对元组进行切片，遵循\ **左闭右开**\ 原则。
+
+.. code:: python
+
+    >>> def_tuple = ("Hi", "my", "name", "is", "kele")
+    # 截取第一至第三个元素（不包括第三个元素）
+    >>> def_tuple[0:2]    
+    ("Hi", "my")
+    # 超出索引值并不会报错
+    >>> def_tuple[0:10]    
+    ('Hi', 'my', 'name', 'is', 'kele')
+    # 全元组截取（复制元组）
+    >>> def_tuple[:]    
+    ('Hi', 'my', 'name', 'is', 'kele')
+    # 指定步长，截取列表
+    # 步长为 2 ，表示每两个元素取一个元素
+    >>> def_tuple[0:5:2]    
+    ('Hi', 'name', 'kele')
+    # 怎么反转元组？
+    >>> def_tuple[::-1] 
+    ('kele', 'is', 'name', 'my', 'Hi')
+
+**元组基础方法**
+^^^^^^^^^^^^^^^^
+
+元组基础方法可参照下表：
+
++-------------------+--------------------------+
+| 方法              | 说明                     |
++===================+==========================+
+| len(tuple)        | 计算元组元素数量         |
++-------------------+--------------------------+
+| max(tuple)        | 返回元组中最大的元素     |
++-------------------+--------------------------+
+| min(tuple)        | 返回元组中最小的元素     |
++-------------------+--------------------------+
+| type(tuple)       | 查看数据类型             |
++-------------------+--------------------------+
+| tuple(iterable)   | 将可迭代对象转换为元组   |
++-------------------+--------------------------+
+
+1、使用 ``len`` 方法计算元组数量。
+
+.. code:: python
+
+    >>> def_tuple = ("kele", "python")
+    >>> len(def_tuple)
+    2
+
+2、使用 ``max`` 方法，返回元组中最大的元素。
+
+.. code:: python
+
+    >>> def_tuple = (18, 8, 168)
+    >>> max(def_tuple)
+    168
+
+3、使用 ``min`` 方法，返回元组中最小的元素。
+
+.. code:: python
+
+    >>> def_tuple = (18, 8, 168)
+    >>> min(def_tuple)
+    8
+
+4、使用 ``type`` 方法查看数据类型。
+
+.. code:: python
+
+    >>> def_tuple = ("kele", "python")
+    >>> type(def_tuple)
+    <class 'tuple'>
+
+5、使用 ``tuple`` 方法将可迭代对象转换为元组。
+
+.. code:: python
+
+    >>> def_list = ["kele", "python"]
+    >>> tuple(def_list)
+    ('kele', 'python')
+    >>> type(tuple(def_list))
+    <class 'tuple'>
+
+**元组内置方法**
+^^^^^^^^^^^^^^^^
+
+``Python`` 中的 ``tuple``
+类提供了元组操作相关的内置方法，由于元组仅有两个内置方法，这里再选择类中的部分
+``魔法方法`` 进行演示，下面按照类中方法定义的顺序演示。
+
+1、使用 ``index`` 返回某一元素在元组中第一次出现的索引值。
+
+.. code:: python
+
+    # 使用语法：dict.index(obj)
+    >>> def_tuple = ("Hi", "kele", "python", "kele")
+    >>> def_dict.index("kele")
+    1
+
+2、使用 ``count`` 方法统计某一元素在元组中出现的次数。
+
+.. code:: python
+
+    # 使用语法：dict.count(obj)
+    >>> def_tuple = ("Hi", "kele", "python", "kele")
+    >>> def_tuple.count("kele")
+    2
+    >>> def_tuple.count("xuebi")
+    0
+
+3、使用 ``__add__`` 方法在元组后面追加新的元组，与 ``+`` 类似。
+
+.. code:: python
+
+    # 使用语法：dict.__add__(tuple)
+    >>> def_tuple = ("Hi", "kele")
+    >>> def_tuple2 = ("python", "say")
+    >>> def_tuple.__add__(def_tuple2)
+    ('Hi', 'kele', 'python', 'say')
+
+4、使用 ``__contains__`` 方法判断某一元素是否包含在元组中，是则返回
+``True`` ， 否则返回 ``False`` ，与 ``in`` 、\ ``not in`` 类似。
+
+.. code:: python
+
+    # 使用语法：dict.__contains__(obj)
+    >>> def_tuple = ("Hi", "kele")
+    >>> def_tuple.__contains__("kele")
+    True
+    >>> def_tuple.__contains__("xuebi")
+    False
+
+5、使用 ``__mul__`` 方法重复元组元素，与 ``*`` 类似。
+
+.. code:: python
+
+    # 使用语法：dict.__mul__(num)
+    >>> def_tuple = ("Hi", "kele")
+    >>> def_tuple.__mul__(2)
+    ('Hi', 'kele', 'Hi', 'kele')
+    >>> def_tuple.__contains__("xuebi")
+    False
+
+**元组扩展**
+^^^^^^^^^^^^
+
+1、使用 ``sorted`` 函数对元组进行排序。
+
+.. code:: python
+
+    >>> def_tuple = ("2c", "3a", "1b")
+    # 直接调用
+    # 返回排序后元素组成的列表
+    >>> sorted(def_tuple)
+    ['1b', '2c', '3a']
+    # 使用匿名函数 lambda 按照元素的第一个字符排序
+    >>> sorted(def_tuple, key=lambda x:x[0])
+    ['1b', '2c', '3a']
+    # 使用匿名函数 lambda 按照元素的第二个字符排序
+    >>> sorted(def_tuple, key=lambda x:x[1])
+    ['3a', '1b', '2c']
+    # 原元组并不会改变
+    >>> def_tuple
+    ('2c', '3a', '1b')
+
+2、使用 ``sorted`` 函数对元组进行多规则的排序。
+
+.. code:: python
+
+    >>> def_tuple = ("2c", "3a", "1b", "3d")
+    # 先按第一个字符排序，若相同，再按第二个字符排序
+    >>> sorted(def_tuple,key=lambda x:(x[0], x[1]))
+    ['1b', '2c', '3a', '3d']
+
+**总结**
+^^^^^^^^
+
+1. Python 中的元组与列表类似，
+   索引、切片等用法基本相同，但也存在一定差异，其不允许修改的特性，经常被用于定义、保存一些特定的数据。
+
+2. 定义元组可直接使用小括号- ``()``\ ， 也可选择 ``tuple()``
+   方法，在定义单元素元组时需要\ **在末尾加上** ``,`` ，否则会引起误会。
+
+.. code:: python
+
+    # 习惯用法尝试
+    >>> def_tuple = ("kele")
+    >>> type(def_tuple)
+    # 居然不是元组，是字符串类型
+    <class 'str'>
+    >>> def_tuple = (1)
+    >>> type(def_tuple)
+    # 居然不是元组，是数字类型
+    <class 'int'>
+    # 正确用法
+    >>> def_tuple = ("kele", )
+    >>> type(def_tuple)
+    <class 'tuple'>
+    >>> def_tuple = (1, )
+    >>> type(def_tuple)
+    <class 'tuple'>
+
+3. 元组虽然不允许修改，但当\ **其元素的子元素**\ 包含可变类型时，也是允许修改的，当然，也可通过\ **连接、重复**\ 组成新的元组。
+
+4. 元组仅有两个内置方法， ``tuple``
+   类中的其他魔法方法，大家可逐个进行尝试，对于效果一样的方法，使用时可自行选择。
+
+5. 文中难免会出现一些描述不当之处（尽管我已反复检查多次），欢迎在留言区指正，也可分享元组相关的知识。
+
+6. Python
+   系列相关文章已全部更新至个人博客：kelepython.rtfd.io，欢迎前往阅读。
+
+7. 为了便于沟通交流，我已创建微信学习交流群，欢迎在后台回复 ``加群``
+   加入我们。
+
+.. figure:: https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg
+   :alt:
