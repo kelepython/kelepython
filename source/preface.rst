@@ -21,8 +21,8 @@ Python 语言诞生于 1991 年，经过近30年的发展，Python 不仅没有�
 
 ------------------------------
 
-.. figure:: https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg
-   :alt: 添加微信，加入可乐时光
+.. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
+   :alt: 
    
    
 

@@ -409,5 +409,5 @@ Python 用反斜杠 ``\``
 
 4、文中难免会出现一些描述不当之处（尽管我已反复检查多次），欢迎在留言去指正，字符串相关的有趣案例也可进行分享。
 
-.. figure:: https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg
-   :alt:
+.. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
+   :alt: 

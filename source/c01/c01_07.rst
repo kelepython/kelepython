@@ -1,0 +1,522 @@
+1.7 集合 (Set) \| 一山不容二虎的 Python 数据类型
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**前言**
+^^^^^^^^
+
+Hi，大家好，我是可乐， 今天介绍一下 Python ``集合``
+的相关知识，并附上相应的案例代码，便于学习、吸收。
+
+.. figure:: https://i.loli.net/2020/05/12/MBAIgVfzYk1RG5v.jpg
+   :alt: 
+
+**集合简介**
+^^^^^^^^^^^^
+
+``集合 (Set)`` 是 Python
+中基本数据结构之一，与数学中的集合概念类似但又存在一定差异，集合中的元素唯一、且无序存储。
+
+集合使用大括号 - ``{}`` 包裹，元素之间使用逗号 - ``，``
+分隔，集合中的元素可以是字符串、数字、列表、集合等其他任何数据类型。
+
+集合不支持索引、嵌套，也没有切片操作，但支持更新、删除等操作，并且可进行
+``并集`` 、\ ``交集``\ 、\ ``差集``
+等常见的集合操作，下面我们通过案例来学习。
+
+**集合初体验**
+^^^^^^^^^^^^^^
+
+1、使用 ``set()`` 方法定义一个空集合。
+
+.. code:: python
+
+    >>> def_set = set()
+    >>> def_set
+    set()
+    # type 查看数据类型
+    >>> type(def_set)  
+    <class 'set'>
+
+2、使用 ``{}`` 定义一个非空集合 。
+
+.. code:: python
+
+    # 之前介绍过 {} 用于定义空字典，故 {} 用于定义非空集合
+    >>> def_set = {"kele", "python"}
+    >>> def_set
+    {"kele", "python"}
+    # type 查看数据类型
+    >>> type(def_set) 
+    <class 'set'>
+
+3、集合特性之\ **元素唯一**\ 。
+
+.. code:: python
+
+    >>> def_set = {"kele", "python", "kele"}
+    >>> def_set
+    {'kele', 'python'}
+
+4、集合特性之\ **元素无序存储**\ 。
+
+.. code:: python
+
+    >>> def_set = set(["1", "2", "3"])
+    # 元素为无序存储
+    >>> def_set
+    {'1', '3', '2'}
+
+5、集合特性之不可通过索引获取元素，但可通过 ``for`` 循环获取。
+
+.. code:: python
+
+    >>> def_set = {"kele", "python"}
+    >>> def_set[0]
+    # 因集合是无序的，所以不能使用索引访问
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    TypeError: 'set' object does not support indexing
+    # 使用 for 循环获取集合元素
+    >>> for set_element in def_set:
+            print(set_element)
+    kele
+    python
+
+6、使用 ``in`` 、\ ``not in`` 判断元素是否在集合中，是则返回 ``True`` ，
+否则返回 ``False`` 。
+
+.. code:: python
+
+    >>> def_set = ("kele", "python")
+    >>> "kele" in def_set
+    True
+    >>> "python" not in def_set
+    False
+
+**集合基础方法**
+^^^^^^^^^^^^^^^^
+
+集合基础方法可参照下表：
+
++-----------------+--------------------------+
+| 方法            | 说明                     |
++=================+==========================+
+| len(set)        | 计算集合元素数量         |
++-----------------+--------------------------+
+| max(set)        | 返回集合中最大的元素     |
++-----------------+--------------------------+
+| min(set)        | 返回集合中最小的元素     |
++-----------------+--------------------------+
+| type(set)       | 查看数据类型             |
++-----------------+--------------------------+
+| set(iterable)   | 将可迭代对象转换为集合   |
++-----------------+--------------------------+
+
+1、使用 ``len`` 方法计算集合数量。
+
+.. code:: python
+
+    >>> def_set = {68, 8, 168}
+    >>> len(def_set)
+    3
+
+2、使用 ``max`` 方法，返回集合中最大的元素。
+
+.. code:: python
+
+    >>> def_set = {68, 8, 168}
+    >>> max(def_set)
+    168
+
+3、使用 ``min`` 方法，返回集合中最小的元素。
+
+.. code:: python
+
+    >>> def_set = {68, 8, 168}
+    >>> min(def_set)
+    8
+
+4、使用 ``type`` 方法查看数据类型。
+
+.. code:: python
+
+    >>> def_set = {"kele","python"}
+    >>> type(def_set)
+    <class 'set'>
+
+5、使用 ``set`` 方法将可迭代对象转换为集合。
+
+.. code:: python
+
+    >>> def_set = set(["kele", "python"])
+    >>> def_set
+    {'kele', 'python'}
+    >>> type(set(def_set))
+    <class 'set'>
+
+**集合内置方法**
+^^^^^^^^^^^^^^^^
+
+``Python`` 中的 ``set``
+类提供了集合操作相关的内置方法，集合中还提供了部分操作符号与之对应，下面按照类中方法定义的顺序演示。
+
+集合内置函数与集合操作符对于关系可参照下表：
+
++-------------------------+--------+----------------+
+| 方法                    | 符号   | 说明           |
++=========================+========+================+
+| difference              | \-     | 计算差集       |
++-------------------------+--------+----------------+
+| intersection            | &      | 计算交集       |
++-------------------------+--------+----------------+
+| issubset                | <      | 子集判断       |
++-------------------------+--------+----------------+
+| symmetric\_difference   | ^      | 计算对称差集   |
++-------------------------+--------+----------------+
+| union                   | \|     | 计算并集       |
++-------------------------+--------+----------------+
+
+1、使用 ``add`` 方法，给集合添加元素，若元素已存在，不做任何操作。
+
+.. code:: python
+
+    # 使用语法：set.add(obj)
+    # 必须给定 obj 参数
+    >>> def_set = {"kele","python"}
+    >>> def_set.add("kele")
+
+    # 元素已存在，不做任何操作
+    >>> def_set
+    {'python', 'kele'}
+    >>> def_set.add("xuebi")
+    >>> def_set
+    >>> {'xuebi', 'python', 'kele'}
+
+2、使用 ``clear`` 方法清空集合。
+
+.. code:: python
+
+    # 使用语法：set.clear()
+    >>> def_set = {"kele","python"}
+    >>> def_set.clear()
+    >>> def_set
+    set()
+
+3、使用 ``copy`` 方法 ``浅拷贝`` 复制一个新集合。
+
+.. code:: python
+
+    # 使用语法：set.copy()
+    >>> def_set = {"kele","python"}
+    >>> def_set.copy()
+    {'kele', 'python'}
+
+4、使用 ``difference``
+方法，计算两个集合的差集，返回一个新集合，与集合运算符 ``-`` 效果相同。
+
+.. code:: python
+
+    # 使用语法：set1.difference(set2)
+    # 返回包含在 ste1 中，但不包含在 set2 中的元素
+    >>> def_set1 = {"kele","python"}
+    >>> def_set2 = {"kele","xuebi"}
+    >>> def_set1.difference(def_set2)
+    {'python'}
+
+    # 使用减号运算符计算两个集合的差值
+    >>> def_set1 - def_set2
+    {'python'}
+    # 也可使用集合一 减去 集合一与集合二的交集(后面会介绍)
+    >>> def_set1 - def_set2 & def_set1
+    {'python'}
+
+5、使用 ``difference_update`` 方法，计算两个集合的差集，并直接从
+def\_set1 中移除两个集合都存在的元素。
+
+.. code:: python
+
+    # 使用语法：set1.difference_update(set2)
+    # 无返回值，直接从 def_set1 中移除两个集合都存在的元素
+    >>> def_set1 = {"kele","python"}
+    >>> def_set2 = {"kele","xuebi"}
+    >>> def_set1.difference_update(def_set2)
+    # 可以发现，已经移除了 "kele"
+    >>> def_set1
+    {'python'}
+
+6、使用 ``discard`` 方法，删除集合中指定的元素，元素不存在也不会报错。
+
+.. code:: python
+
+    # 使用语法：set.discard(obj)
+    >>> def_set = {"kele","python"}
+    # 无返回值
+    >>> def_set.discard("kele")
+    >>> def_set1
+    {'python'}
+    # 元素不存在时不报错，不做任何操作
+    >>> def_set.discard("xuebi")
+
+7、使用 ``intersection`` 方法，计算多个集合的交集，与集合运算符 ``&``
+效果相同。
+
+.. code:: python
+
+    # 使用语法：set1.intersection(set2，set3，...)
+    # 返回 set1、set2 的交集
+    >>> def_set1 = {"kele","python"}
+    >>> def_set2 = {"kele","xuebi"}
+    >>> def_set1.intersection(def_set2)
+    {'kele'}
+
+    # 返回 set1、set2、set3 的交集
+    >>> def_set3 = {"kele","tea"}
+    >>> def_set1.intersection(def_set2, def_set3)
+    {'kele'}
+
+    # 也可使用交集运算符计算集合的差值
+    >>> def_set1 & def_set2
+    {'kele'}
+    >>> def_set1 & def_set2 & def_set3
+    {'kele'}
+
+8、使用 ``intersection_update`` 方法，计算多个集合的交集，并直接从
+def\_set1 中删除所有集合中都不重叠的元素。
+
+.. code:: python
+
+    # 使用语法：set1.intersection_update(set2，set3，...)
+    # 返回 set1、set2 的交集
+    >>> def_set1 = {"kele","python"}
+    >>> def_set2 = {"kele","xuebi"}
+    # 无返回值
+    >>> def_set1.intersection_update(def_set2)
+    # 已从 def_set1 中删除 "python"
+    >>> def_set1
+    {'kele'}
+    >>> def_set1.intersection(def_set2, def_set3)
+    {'kele'}
+
+    # 也可使用交集运算符计算集合的差值
+    >>> def_set1 & def_set2
+    {'kele'}
+    >>> def_set1 & def_set2 & def_set3
+    {'kele'}
+
+9、使用 ``isdisjoint`` 方法，判断两个集合是否不包含相同的元素，是则返回
+``False`` ，否则返回 ``True`` 。
+
+.. code:: python
+
+    # 使用语法：set1.isdisjoint(set2)
+    >>> def_set1 = {"kele","python"}
+    >>> def_set2 = {"kele","xuebi"}
+    >>> def_set1.isdisjoint(def_set2)
+    False
+
+    >>> def_set3 = {"xuebi"}
+    >>> def_set1.isdisjoint(def_set3)
+    True
+
+10、使用 ``issubset`` 方法，判断 set1 是否是 set2 的子集，是则返回
+``True`` ，否则返回 ``False`` 。
+
+.. code:: python
+
+    # 使用语法：set1.issubset(set2)
+    >>> def_set1 = {"kele"}
+    >>> def_set2 = {"kele","xuebi"}
+    # def_set1 是 def_set2 的子集
+    >>> def_set1.issubset(def_set2)
+    True
+
+    # def_set3 不是 def_set2 的子集
+    >>> def_set3 = {"xuebi"}
+    >>> def_set1.issubset(def_set3)
+    False
+
+11、使用 ``issuperset`` 方法，判断 set1 是否是 set2 的 ``超集``
+，可理解为父集，是则返回 ``True`` ，否则返回 ``False`` 。
+
+.. code:: python
+
+    # 使用语法：set1.issuperset(set2)
+    >>> def_set1 = {"kele","xuebi"}
+    >>> def_set2 = {"kele"}
+    # def_set1 是 def_set2 的父集
+    >>> def_set1.issuperset(def_set2)
+    True
+
+    # def_set1 不是 def_set3 的父集
+    >>> def_set3 = {"kele","python"}
+    >>> def_set1.issuperset(def_set3)
+    False
+
+12、使用 ``pop`` 方法，删除并返回集合中任意元素。
+
+.. code:: python
+
+    # 使用语法：set.pop()
+    >>> def_set = {"kele","python"}
+    >>> def_set.pop()
+    'kele'
+    >>> def_set.pop()
+    'python'
+
+    # 空集合调用会报错
+    >>> def_set.pop()
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    KeyError: 'pop from an empty set'
+
+13、使用 ``remove`` 方法，删除集合中某一元素。
+
+.. code:: python
+
+    # 使用语法：set.remove(obj)
+    >>> def_set = {"kele","python"}
+    # 无返回值
+    >>> def_set.remove("kele")
+    >>> def_set
+    {'python'}
+
+    # 元素不存在时会报错
+    >>> def_set.remove("xuebi")
+    Traceback (most recent call last):
+      File "<input>", line 1, in <module>
+    KeyError: 'xuebi'
+
+14、使用 ``symmetric_difference``
+方法，删除两个集合中相同的元素，再取并集，即 ``对称差集`` ，与集合运算符
+``^`` 效果相同。
+
+.. code:: python
+
+    # 使用语法：set1.symmetric_difference(set2)
+    >>> def_set1 = {"kele","python"}
+    >>> def_set2 = {"kele","xuebi"}
+    # 先删除 kele ，再取并集
+    >>> def_set1.symmetric_difference(def_set2)
+    {'xuebi', 'python'}
+
+    # 也可使用运算符 ^ 计算集合的对称差
+    >>> def_set1 ^ def_set2
+    {'xuebi', 'python'}
+
+15、使用 ``symmetric_difference_update``
+方法，取两个集合的对称差值，并在set1 中删除两个集合中相同的元素 。
+
+.. code:: python
+
+    # 使用语法：set1.symmetric_difference_update(set2)
+    >>> def_set1 = {"kele","python"}
+    >>> def_set2 = {"kele","xuebi"}
+    # 无返回值
+    >>> def_set1.symmetric_difference_update(def_set2)
+    >>> def_set1
+    {'python', 'xuebi'}
+
+16、使用 ``union`` 方法，取多个集合的并集，与集合运算符 ``|`` 效果相同。
+
+.. code:: python
+
+    # 使用语法：set1.union(set2，set3，...)
+    # 返回 set1、set2 的并集
+    >>> def_set1 = {"kele","python"}
+    >>> def_set2 = {"kele","xuebi"}
+    >>> def_set1.union(def_set2)
+    {'python', 'kele', 'xuebi'}
+
+    # 返回 set1、set2、set3 的并集
+    >>> def_set3 = {"tea","xuebi"}
+    >>> def_set1.union(def_set2, def_set3)
+    {'kele', 'xuebi', 'python', 'tea'}
+
+    # 也可使用并集运算符计算集合的并集
+    >>> def_set1 | def_set2
+    {'python', 'kele', 'xuebi'}
+    >>> def_set1 | def_set2 | def_set3
+    {'kele', 'xuebi', 'python', 'tea'}
+
+17、使用 ``update``
+方法，添加新的元素或集合到当前集合中，重复的元素会被忽略。
+
+.. code:: python
+
+    # 使用语法：set1.update(set2)
+    # 添加列表元素到当前集合中
+    >>> def_set1 = {"kele","python"}
+    # 无返回值
+    >>> def_set1.update(["tea", "xuebi"])
+    >>> def_set1
+    {'xuebi', 'python', 'tea', 'kele'}
+
+    # 添加集合元素到当前集合中
+    >>> def_set1 = {"kele","python"}
+    >>> def_set2 = {"tea","xuebi"}
+    # 无返回值
+    >>> def_set1.update(def_set2)
+    >>> def_set1
+    {'xuebi', 'python', 'tea', 'kele'}
+
+**集合应用**
+^^^^^^^^^^^^
+
+1、使用集合对字符串进行去重。
+
+.. code:: python
+
+    >>> def_str = "Hikelepython"
+    >>> def_set = set(def_str)
+    >>> def_set
+    {'l', 'h', 't', 'p', 'o', 'H', 'n', 'e', 'i', 'k', 'y'}
+    # 使用 join 方法连接字符串，这里暂时不考虑顺序
+    >>> "".join(def_set)
+    'lhtpoHneiky'
+
+2、使用集合对列表进行去重。
+
+.. code:: python
+
+    >>> def_list = ["k", "e", "l", "e"]
+    >>> def_set = set(def_list)
+    >>> def_set
+    {'k', 'l', 'e'}
+    # 将集合转换成列表
+    >>> list(def_set)
+    ['k', 'l', 'e']
+
+3、使用集合对元组进行去重。
+
+.. code:: python
+
+    >>> def_tuple = ("k", "e", "l", "e")
+    >>> def_set = set(def_tuple)
+    >>> def_set
+    {'k', 'l', 'e'}
+    # 将集合转换成元组
+    >>> tuple(def_set)
+    ('k', 'l', 'e')
+
+**总结**
+^^^^^^^^
+
+1. Python
+   中的集合，因其元素唯一的特性，常用于数据的去重，当然，它也可用于数学集合的相关计算。
+2. 定义集合可使用 ``set()`` 方法，但不能使用 ``{}``
+   ，因为大括号定义的是一个空字典。
+3. 集合的内置方法中，部分有操作符与之对应，使用时可自行选择。
+4. 集合的内置方法中，有几组方法的效果需要做一下区分。
+
+-  difference 与 difference\_update，求差集
+-  intersection 与 intersection\_update，求交集
+-  symmetric\_difference 与 symmetric\_difference\_update，求对称差集
+-  以上几组方法的区别均在于，后者会直接操作原始集合
+
+5. 文中难免会出现一些描述不当之处（尽管我已反复检查多次），欢迎在留言区指正，也可分享集合相关的知识。
+6. 原创文章已全部更新至 Github：https://github.com/kelepython/kelepython
+7. 为了便于沟通交流，我已创建微信学习交流群，欢迎在后台回复 ``加群``
+   加入我们。
+
+.. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
+   :alt: 

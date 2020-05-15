@@ -463,5 +463,5 @@ Hi，大家好，我是可乐，今天介绍一下 Python ``列表``
    ``list`` 类中的方法，案例中使用后者。
 6. 文中难免会出现一些描述不当之处（尽管我已反复检查多次），欢迎在留言区指正，列表相关的知识点也可进行分享。
 
-.. figure:: https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg
-   :alt:
+.. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
+   :alt: 

@@ -363,5 +363,5 @@ Hi，大家好，我是可乐，到目前为止，我们已介绍了
 7. 为了便于沟通交流，我已创建微信学习交流群，欢迎在后台回复 ``加群``
    加入我们。
 
-.. figure:: https://i.loli.net/2020/04/20/F4vI8N6umAo1BZ7.jpg
-   :alt:
+.. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
+   :alt: 
