@@ -9,6 +9,7 @@
 - 1.5 [Python 字典操作，母亲节加餐 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_05.html>)
 - 1.6 [元组(Tuple) | 不可改变的 Python 数据类型 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_06.html>)
 - 1.7 [集合 (Set) | 一山不容二虎的 Python 数据类型 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_07.html>)
+- 1.8 [数字(Number) | 最贴近生活的 Python 数据类型 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_08.html>)
 ---
 ![](https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png)
 
