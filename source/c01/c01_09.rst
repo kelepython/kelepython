@@ -1,0 +1,579 @@
+1.9 如果(If) \| Python 中的条件控制语句详解
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**前言**
+^^^^^^^^
+
+Hi，大家好，我是可乐，生活中曾听到过太多的如果，如果当年我再认真一点，如果我高考的物理多选题没有多选选项，如果我大学时多学些技能，如果我早点买房等等。
+
+工作中，同样存在很多 ``如果`` ，今天给大家详细介绍 ``Python``
+中的条件控制语句，并附上相应的案例代码，便于吸收、理解。
+
+**条件控制语句简介**
+^^^^^^^^^^^^^^^^^^^^
+
+Python 中的 ``条件控制语句 (Conditional control statement)``
+是通过一条或者多条语句的执行结果（True 或者
+Flase），来决定执行的代码逻辑 。
+
+它包含 ``if`` 、\ ``elif`` 、\ ``else`` 关键字， Python 中没有
+``else if`` 的写法，只存在 elif 这种写法。
+
+每句判断语句使用冒号 - ``:`` 结尾，使用 ``缩进``
+划分语句块，相同缩进数的语句组成一个语句块。
+
+条件控制语句，包括 if 语句、if - else 语句、if - elif - else 语句、以及
+if - elif (多个elif) - else 语句，下面我们通过案例逐一演示。
+
+**if 语句**
+^^^^^^^^^^^
+
+if 语句，仅有一个判断条件，如果条件成立（为
+True），则执行判断语句后带缩进的代码逻辑，否则不执行。
+
+1、语法格式：
+
+.. code:: python
+
+    # 语句末尾的冒号一定不能丢
+    if 判断条件:
+        # 注意与 if 缩进
+        条件为真才执行的代码逻辑
+
+2、执行流程图：
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj16wlUcWrsTKZRRnJiaxeRucKvZP2f0OJOaxHr8RLpC97ueOoxLCbZtmOaVdUZPtIZdYsNcgYOaZiaeQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1
+   :alt: img
+
+
+3、案例：
+
+.. code:: python
+
+    >>> if True:
+            print("条件为真时打印的语句")
+            
+    条件为真时打印的语句
+
+**if - else 语句**
+^^^^^^^^^^^^^^^^^^
+
+if - else 语句，仅有一个判断条件，与 if 语句的区别在于，如果条件成立（为
+True），则执行 if 判断语句后带缩进的代码逻辑，否则执行 else
+后带缩进的代码逻辑。
+
+1、语法格式：
+
+.. code:: python
+
+    # 语句末尾的冒号一定不能丢
+    if 判断条件:
+        # 注意与 if 缩进
+        条件为真时执行的代码逻辑
+    else:
+        # 注意与 else 缩进
+        条件为假时执行的代码逻辑
+
+2、执行流程图：
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj16wlUcWrsTKZRRnJiaxeRucKiajA0vKXhRjGRq6ia1ysr9oCibVEUKrhaTnwDJJgDGA9FwhRj22HXATPA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1
+   :alt: img
+
+
+3、案例：
+
+.. code:: python
+
+    >>> if True:
+            print("条件为真时打印的语句")
+        else:
+            print("条件为假时打印的语句")
+            
+    条件为真时打印的语句
+
+    >>> if False:
+            print("条件为真时打印的语句")
+        else:
+            print("条件为假时打印的语句")
+            
+    条件为假时打印的语句
+
+**if - elif - else 语句**
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+在使用判断语句时，我们有时需要对两个条件进行判断，并执行对应的代码逻辑，这时以上两种语句就无法满足我们的需求。
+
+我们可使用 if - elif - else 语句，有两个判断条件，如果 if
+后的条件成立（为 True），则执行 if 判断语句后带缩进的代码逻辑，如果 elif
+后的条件成功（为 True），则执行 elif
+判断语句后带缩进的代码逻辑，否则执行 else 后带缩进的代码逻辑。
+
+值得注意的是，if - elif - else
+语句中，仅有一个条件成立后，就会退出当前整个判断语句，简单来说，这三条判断路径，只会走其中一条。
+
+1、语法格式：
+
+.. code:: python
+
+    # 语句末尾的冒号一定不能丢
+    if 判断条件一:
+        # 注意与 if 缩进
+        条件一为真时执行的代码逻辑
+    elif 判断条件二:
+        # 注意与 if 缩进
+        条件二为真时执行的代码逻辑
+    else:
+        # 注意与 else 缩进
+        条件一、条件二都为假时执行的代码逻辑
+
+2、执行流程图：
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj16wlUcWrsTKZRRnJiaxeRucK2ZE4zAluvz6uL541y1Zd9SlATtQicjUnqaqblYszpKKSC5fm6bP7HVw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1
+   :alt: img
+
+
+3、案例：
+
+.. code:: python
+
+    >>> drink = "kele"
+    >>> if drink == "kele":
+            print("你选择的饮品是可乐")
+        elif drink == "xuebi":
+            print("你选择的饮品是雪碧")
+        else:
+            print("你选择的既不是可乐，也不是雪碧")
+            
+    你选择的饮品是可乐       
+
+**if - elif (多个) - else 语句**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+与 if - elif - else 语句的区别在于，elif 条件判断的数量不止一个。
+
+1、语法格式：
+
+.. code:: python
+
+    # 语句末尾的冒号一定不能丢
+    if 判断条件一:
+        # 注意与 if 缩进
+        条件一为真时执行的代码逻辑
+    elif 判断条件二:
+        # 注意与 if 缩进
+        条件二为真时执行的代码逻辑
+    ...
+    elif 判断条件N:
+        # 注意与 if 缩进
+        条件N为真时执行的代码逻辑
+    else:
+        # 注意与 else 缩进
+        条件一、条件二、...条件N都为假时执行的代码逻辑
+
+2、执行流程图：
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj16wlUcWrsTKZRRnJiaxeRucKiaaia0lOqNz78PsH5ibc6lUyyKp9hJV5kwicJ2VBhtItHD9iaw3IMPc0xYA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1
+   :alt: img
+
+
+3、案例：
+
+.. code:: python
+
+    >>> drink = "xo"
+    >>> if drink == "kele":
+            print("你选择的饮品是可乐")
+        elif drink == "xuebi":
+            print("你选择的饮品是雪碧")
+        elif drink == "tea":
+            print("你选择的饮品是茶")
+        else:
+            print("你选择的不是可乐，不是雪碧，也不是茶")
+            
+    你选择的不是可乐，不是雪碧，也不是茶
+
+**嵌套使用**
+^^^^^^^^^^^^
+
+以上四种条件控制语句，均支持自身嵌套、以及彼此嵌套使用，下面以 if 语句
+与 if- else 语句为例：
+
+**if 语句自身嵌套使用**
+'''''''''''''''''''''''
+
+.. code:: python
+
+    >>> drink = "kele"
+    >>> ice = "True"
+    # 第一层判断是否是可乐
+    >>> if drink == "kele":
+            # 第二层判断是否加冰
+            if ice == "True":
+                print("你选择的饮品是可乐加冰")
+                        
+    你选择的饮品是可乐加冰
+
+**if - else 语句自身嵌套使用**
+''''''''''''''''''''''''''''''
+
+.. code:: python
+
+    >>> drink = "kele"
+    >>> ice = "True"
+    >>> if drink == "kele":
+            if ice == "True":
+                print("你选择的饮品是可乐加冰")
+            else:
+                print("你选择的饮品是可乐不加冰")
+        else:
+            print("你选择的饮品不是可乐")
+                        
+    你选择的饮品是可乐加冰
+
+**if 语句与 if - else 语句彼此嵌套使用**
+''''''''''''''''''''''''''''''''''''''''
+
+.. code:: python
+
+    >>> drink = "kele"
+    >>> ice = "False"
+    >>> if drink == "kele":
+            if ice == "True":
+                print("你选择的饮品是可乐加冰")
+            else:
+                print("你选择的饮品是可乐不加冰")
+                        
+    你选择的饮品是可乐不加冰
+
+**条件控制语句中常用的基础运算符**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+常用的基础运算符可参照下表：
+
++---------------+----------------------------------+
+| 操作符        | 说明                             |
++===============+==================================+
+| <             | 小于                             |
++---------------+----------------------------------+
+| <=            | 小于或者等于                     |
++---------------+----------------------------------+
+| >             | 大于                             |
++---------------+----------------------------------+
+| >=            | 大于或者等于                     |
++---------------+----------------------------------+
+| ==            | 等于，比较两侧对象的值是否相等   |
++---------------+----------------------------------+
+| !=            | 不等于                           |
++---------------+----------------------------------+
+| in / not in   | 成员运算符                       |
++---------------+----------------------------------+
+| is / not is   | 身份运算符                       |
++---------------+----------------------------------+
+
+1、小于 - ``<`` 与 小于或者等于 - ``<=``
+
+.. code:: python
+
+    >>> score = 59
+    >>> if 0 < score < 60:
+            print("未及格，继续努力")
+        elif 60 <= age < 69:
+            print("及格，继续进阶")
+        else:
+            print("中等、良好、或优秀")
+                        
+    未及格，继续努力
+
+2、大于 - ``>`` 与 大于或者等于 - ``>=``
+
+.. code:: python
+
+    >>> score = 91
+    >>> if score >= 60:
+            print("及格，继续进阶")
+        elif score > 90:
+            print("优秀")
+        else:
+            print("其他等级")
+                        
+    优秀
+
+3、等于 - ``==`` 与 不等于 - ``!=``
+
+.. code:: python
+
+    >>> password = "123456"
+    >>> if password == "123456":
+            print("登陆成功")
+                        
+    登陆成功
+
+    >>> user_name = "zhangsan"
+    >>> if user_name != "root":
+            print("没有操作权限")
+                        
+    没有操作权限
+
+4、成员运算符 ``in`` 、\ ``not in`` 判断成员是否在序列中
+
+.. code:: python
+
+    >>> user_list = ["kele","zhangsan"]
+    >>> login_name = "lisi"
+    >>> if login_name not in user_list:
+            print("用户不存在")
+        elif login_name in user_list:
+            print("登陆成功")
+                        
+    用户不存在
+
+5、身份运算符 ``is`` 、\ ``not is`` 比较两个对象的存储单元
+
+.. code:: python
+
+    >>> kele_age = 18
+    >>> xuebi_age = 18
+    >>> if kele_age is xuebi_age:
+            print("两者指向同一块内存空间")
+        if kele_age not is xuebi_age:
+             print("两者指向不同的内存空间")
+        
+    两者指向同一块内存空间
+
+**条件控制语句中常用的逻辑运算符**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+常用的逻辑运算符可参照下表：
+
++----------+----------+
+| 运算符   | 说明     |
++==========+==========+
+| not      | 逻辑非   |
++----------+----------+
+| and      | 逻辑与   |
++----------+----------+
+| or       | 逻辑或   |
++----------+----------+
+
+1、逻辑非 - ``not``\ ，对语句的布尔值取反
+
+.. code:: python
+
+    >>> bool_1 = True
+    >>> bool_2 = False
+    >>> if not bool_1:
+            print("对真取非为假")
+        if not bool_2:
+            print("对假取非为真")
+        
+    对假取非为真
+
+2、逻辑与 - ``and``\ ，找 False，若第一个语句的值为 False 则直接返回
+False，否则，返回第二个语句的值
+
+.. code:: python
+
+    # 有假则为假
+    >>> bool_1 = True
+    >>> bool_2 = False
+    >>> bool_3 = True
+    >>> if bool_1 and bool_2:
+            print("有假则为假")
+        if bool_1 and bool_3:
+            print("全真才为真")
+            
+    全真才为真
+
+3、逻辑或 - ``or``\ ，找 True，若第一个语句的值为 True 则直接返回
+True，否则，返回第二个语句的值
+
+.. code:: python
+
+    # 有真则为真
+    >>> bool_1 = True
+    >>> bool_2 = False
+    >>> bool_3 = False
+    >>> if bool_1 or bool_2:
+            print("有真则为真")
+        if bool_2 or bool_3:
+            print("全假才为假")
+            
+    有真则为真
+
+扩展 - Python 中的特殊对象
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Python 中有部分特殊对象，它们的布尔值为 False，具体可参照下表：
+
++----------------------------------------+----------+
+| 对象                                   | 布尔值   |
++========================================+==========+
+| None                                   | False    |
++----------------------------------------+----------+
+| 所有值为零的数（整数、复数、浮点数）   | False    |
++----------------------------------------+----------+
+| 空字符串                               | False    |
++----------------------------------------+----------+
+| 空列表                                 | False    |
++----------------------------------------+----------+
+| 空元组                                 | False    |
++----------------------------------------+----------+
+| 空字典                                 | False    |
++----------------------------------------+----------+
+| 空集合                                 | False    |
++----------------------------------------+----------+
+
+下面我们逐一验证
+
+1、None 与值为零的数
+
+.. code:: python
+
+    >>> if not None:
+            print("None 的布尔值为 False")
+
+    None 的布尔值为 False 
+
+    >>> if not 0:
+            print("0 的布尔值为 False")
+
+    0 的布尔值为 False
+
+    >>> if not 0.0:
+            print("0.0 的布尔值为 False")
+
+    0.0 的布尔值为 False
+
+    >>> if not 0 + 0j:
+            print("0 + 0j 的布尔值为 False")
+
+    0 + 0j 的布尔值为 False
+
+2、空字符串、空列表、空元组
+
+.. code:: python
+
+    >>> if not "":
+            print("空字符串的布尔值为 False")
+
+    空字符串的布尔值为 False
+
+    >>> if not []:
+            print("空列表的布尔值为 False")
+
+    空列表的布尔值为 False
+
+    >>> if not tuple():
+            print("空元组的布尔值为 False")
+
+    空元组的布尔值为 False
+
+3、空字典、空集合
+
+.. code:: python
+
+    >>> if not {}:
+            print("空字典的布尔值为 False")
+
+    空字典的布尔值为 False
+
+    >>> if not set():
+            print("空集合的布尔值为 False")
+
+    空集合的布尔值为 False
+
+**扩展 - 使用否定判断精简代码**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+工作中，多使用否定判断，可精简部分代码，下面通过一个简单的案例说明
+
+.. code:: python
+
+    # 传统写法
+    is_kele = True
+    if is_kele:
+        print("Yes")
+    else:
+        print("No")
+
+    # 否定判断
+    is_kele = True
+    if not is_kele:
+        print("No")
+    print("Yes")
+
+**扩展 - 猜拳游戏**
+^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    import random
+
+
+    def guessing_game():
+        """
+        猜拳游戏 if - elif - else 与 逻辑运算符
+        Author：可乐python说
+        :return:
+        """
+        player_input = int(input("请出拳（0剪刀，1石头，2布）："))
+        computer_ = random.randint(0, 2)
+        if (player_input == 0 and computer_ == 2) \
+                or (player_input == 1 and computer_ == 0) \
+                or (player_input == 2 and computer_ == 0):
+            print("电脑出拳%s,恭喜你赢了！" % computer_)
+        elif (player_input == 0 and computer_ == 0) \
+                or (player_input == 1 and computer_ == 1) \
+                or (player_input == 2 and computer_ == 2):
+            print("电脑出拳%s,平局！" % computer_)
+        else:
+            print("电脑出拳%s,很遗憾你输了！" % computer_)
+
+
+    if __name__ == '__main__':
+        guessing_game()
+
+**扩展 - 火车检票进站**
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    def train_check_in():
+        """
+        火车检票入站 if - else 嵌套
+        Author：可乐python说
+        :return: 
+        """
+        train_ticket = int(input("请出示车票（1表示有，0表示无）："))
+        is_safe = int(input("请过安检（1表示安全，0表示危险）："))
+        if train_ticket == 1:
+            if is_safe == 1:
+                print("通过安检，可以上车！")
+            else:
+                print("你携带了违规物品，没通过安检，不能上车！")
+        else:
+            print("没有车票，不能进站！")
+
+
+    if __name__ == '__main__':
+        train_check_in()
+
+**总结**
+^^^^^^^^
+
+    1. 工作中在处理业务逻辑时，经常会使用到条件控制语句，当然，以嵌套使用为主。
+    2. 使用条件控制语句时，可根据实际需求，灵活搭配使用基本运算符与逻辑运算符。
+    3. 书写时需注意条件控制语句后的冒号 - ``:`` ，以及代码块的缩进问题。
+    4. if - else 语句可理解为二选其一，if - elif - else
+       则为三选其一，包含多个 elif 则为 N 选其一，其中 else
+       并非必须选项。
+    5. 使用逻辑运算符时，其优先级需要注意，加上小括号 - ``()``
+       的语句优先级最高，() > not > and > or 。
+    6. 使用条件控制语句时，建议多使用否定判断，这时值为空的特殊对象常被使用，可在一定程度上精简代码。
+    7. 文中难免会出现一些描述不当之处（尽管我已反复检查多次），欢迎在留言区指正，也可分享条件判断语句相关的技巧、有趣的小案例。
+    8. 原创文章已全部更新至
+       Github：https://github.com/kelepython/kelepython
+    9. 本文永久博客地址：https://kelepython.readthedocs.io/zh/latest/c01/c01\_09.html
+
+.. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
+   :alt:
