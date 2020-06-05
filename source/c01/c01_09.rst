@@ -14,7 +14,7 @@ Hi，大家好，我是可乐，生活中曾听到过太多的如果，如果当
 
 Python 中的 ``条件控制语句 (Conditional control statement)``
 是通过一条或者多条语句的执行结果（True 或者
-Flase），来决定执行的代码逻辑 。
+False），来决定执行的代码逻辑 。
 
 它包含 ``if`` 、\ ``elif`` 、\ ``else`` 关键字， Python 中没有
 ``else if`` 的写法，只存在 elif 这种写法。
