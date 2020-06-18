@@ -11,6 +11,7 @@
 - 1.7 [集合 (Set) | 一山不容二虎的 Python 数据类型 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_07.html>)
 - 1.8 [数字(Number) | 最贴近生活的 Python 数据类型 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_08.html>)
 - 1.9 [如果(If) | Python 中的条件控制语句详解 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_09.html>)
+- 1.10 [基础 | Python 循环语句详解 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_10.html>)
 ---
 ![](https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png)
 

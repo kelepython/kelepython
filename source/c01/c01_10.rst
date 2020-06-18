@@ -1,0 +1,524 @@
+1.10 基础 \| Python 循环语句详解
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**前言**
+^^^^^^^^
+
+Hi，大家好，我是可乐，无论是在生活、工作、还是学习中，我们都不免会重复去完成一些事情，在程序中我们称之为
+``循环`` ，今天给大家详细介绍 Python 中的循环语句。
+
+.. figure:: https://i.loli.net/2020/06/18/7uy1tMYKoR6xJ8p.png
+   :alt: 
+
+**循环语句简介**
+^^^^^^^^^^^^^^^^
+
+``循环语句 (Loop statement)``
+又称重复结构，用于反复执行某一操作，面对大数量级的重复运算，即使借助计算机，也会比较耗时。
+
+循环语句一般都与 ``条件控制语句``
+搭配使用，根据循环判断条件的返回值，决定是否执行循环体，条件控制语句的相关内容请阅读文章。
+
+循环有两种模式，一种是条件满足时执行循环体，称为 ``当型循环``
+；一种是在条件不满足时执行循环体，称为 ``直到型循环`` 。
+
+Python 中的循环语句包括 ``while 循环`` 与 ``for 循环``
+，前者凭借循环判断条件指定循环范围，后者采用遍历的形式指定循环范围。
+
+为了更加灵活的控制循环语句，Python 中还提供了 ``break`` 、\ ``continue``
+以及 ``pass`` 等语句，下面我们通过案例逐一演示。
+
+**while 循环语句**
+^^^^^^^^^^^^^^^^^^
+
+while
+循环语句，与条件控制语句搭配使用，当满足一定条件时，重复执行对应的循环体代码逻辑，否则跳出循环。
+
+1、语法格式：
+
+.. code:: python
+
+    # 注意句末的冒号
+    while 循环判断条件:
+        # 注意循环体缩进
+        循环体
+
+2、执行流程图：
+
+.. figure:: https://i.loli.net/2020/06/18/VnpTNrioIjBO8SH.png
+   :alt: 
+
+3、案例（重复打印 5 次）：
+
+.. code:: python
+
+    >>> init_num = 0
+        while init_num < 5:
+            print("Hi，我是可乐")
+            init_num += 1
+
+    Hi，我是可乐
+    Hi，我是可乐
+    Hi，我是可乐
+    Hi，我是可乐
+    Hi，我是可乐       
+
+**while - else 循环语句**
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+与 while 循环语句类似，区别在于，while - else
+循环语句在条件不满足退出循环时，会先执行 else 后面带缩进的代码逻辑。
+
+1、语法格式：
+
+.. code:: python
+
+    while 循环判断条件：
+        循环体
+    else:
+        代码逻辑
+
+2、执行流程图：
+
+.. figure:: https://i.loli.net/2020/06/18/QxOI7Kf6ct5klRW.png
+   :alt: 
+
+3、案例：
+
+.. code:: python
+
+    >>> init_num = 0
+        while init_num < 5:
+            print("{} 小于 5".format(init_num))
+            init_num += 1
+        else:
+            # 推出循环时执行的代码逻辑
+            print("可乐python说")
+
+    0 小于 5
+    1 小于 5
+    2 小于 5
+    3 小于 5
+    4 小于 5
+    可乐python说
+
+**for 循环语句**
+^^^^^^^^^^^^^^^^
+
+Python 中的 for 循环是迭代循环，可以遍历任何的序列对象或可迭代对象，如
+str、list、tuple 、 dict 等。
+
+遍历时，for
+循环语句将遍历对象中的所有成员，遍历顺序与成员在对象中的顺序一致，它会对每个成员执行一次循环体，循环的次数在程序开始运行时就已经指定。
+
+for 循环语句由 for 与 in
+搭配组成，它依次迭代出对象中的每个元素，并将元素的值传递给临时变量，然后执行一次循环体。
+
+1、语法格式：
+
+.. code:: python
+
+    # 注意句末的冒号
+    for 变量 in 可迭代对象(序列):
+        # 注意循环体缩进
+        循环体
+
+2、执行流程图：
+
+.. figure:: https://i.loli.net/2020/06/18/VHMyNEs79noqzWr.png
+   :alt: 
+
+3、案例：
+
+.. code:: python
+
+    >>> for i in "Python":
+            print(i)
+
+    P
+    y
+    t
+    h
+    o
+    n
+
+**for - else 循环语句**
+^^^^^^^^^^^^^^^^^^^^^^^
+
+与 for 循环语句一样，增加 else 语句，在完成指定遍历次数后，会优先执行
+else 后带缩进的代码逻辑。
+
+1、语法格式：
+
+.. code:: python
+
+    for 变量 in 可迭代对象(序列):
+        循环体
+    else:
+        代码逻辑
+
+2、执行流程图：
+
+.. figure:: https://i.loli.net/2020/06/18/lmPQ3i6S4MGZcTH.png
+   :alt: 
+
+3、案例：
+
+.. code:: python
+
+    >>> for i in ["kele", "xuebi"]:
+            print(i)
+        else:
+            print("循环结束")
+
+    kele
+    xuebi
+    循环结束
+
+**for 循环中的 range 函数**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+我们在遍历数字序列时，会经常使用到 Python 中内置的
+``range 函数``\ ，它获取的数字序列遵循 ``左开右闭`` 原则，下面请看案例。
+
+1、语法格式
+
+.. code:: python
+
+    for i in range(satrt, stop, step):
+        业务逻辑
+
+    # satrt ：开始位置
+    # stop ：结束位置
+    # step ：步长
+
+2、不指定开始位置与步长，默认从 0 开始，步长默认为 1
+
+.. code:: python
+
+    >>> for i in range(5):
+            print(i)
+
+    0
+    1
+    2
+    3
+    4
+
+3、指定开始位置与结束位置，并指定从 1 开始取值
+
+.. code:: python
+
+    >>> for i in range(1, 5):
+            print(i)
+
+    1
+    2
+    3
+    4
+
+4、指定开始、结束位置，以及步长，取 10 以内的偶数
+
+.. code:: python
+
+    >>> for i in range(0, 10, 2):
+            print(i)
+         
+    0
+    2
+    4
+    6
+    8
+
+**循环语句嵌套使用**
+^^^^^^^^^^^^^^^^^^^^
+
+工作中，我们有时也会将循环语句嵌套使用，下面我们演示 while 循环与 for
+循环语句的嵌套使用。
+
+.. figure:: https://i.loli.net/2020/06/18/U6JqrB1XZzbAgCh.jpg
+   :alt: 
+
+**while 循环语句嵌套**
+''''''''''''''''''''''
+
+1、语法格式
+
+.. code:: python
+
+    while 判断条件一:
+        循环体一
+        while 判断条件二:
+            循环体二
+
+2、案例 - 打印九九乘法表
+
+.. code:: python
+
+    >>> i = 1
+        while i <= 9:
+            j = 1
+            while j <= i:
+                print("%d*%d=%d\t" % (j, i, j*i), end=" ")
+                j += 1
+            print("")
+            i += 1
+
+效果如下：
+
+.. figure:: https://i.loli.net/2020/06/18/OCjASqoK5LPg1Ua.png
+   :alt: 
+
+**for 循环语句嵌套**
+''''''''''''''''''''
+
+1、语法格式
+
+.. code:: python
+
+    for 变量 in 可迭代对象(序列):
+        循环体一
+        for 变量 in 可迭代对象(序列):
+            循环体二
+
+2、案例 - 打印三角形
+
+.. code:: python
+
+    >>> for i in range(1, 8, 2):
+            # 不需要显示星号的位置使用空格填充
+            print(int((7 - i) / 2) * " ", end="")
+            for j in range(i):
+                # 分别在每一行打印对应数量的星号
+                print("*", end="")
+            print()
+       
+       *
+      ***
+     *****
+    *******
+
+**循环语句中的 break 语句**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``break 语句`` 会终止包含它的循环语句，如果 break
+语句在嵌套循环中使用，则它将终止最里面的循环语句。
+
+1、执行流程图
+
+.. figure:: https://i.loli.net/2020/06/18/MvYLj4xT3zGDn1g.png
+   :alt: 
+
+2、案例
+
+.. code:: python
+
+    >>> for i in range(5):
+            if i == 2:
+                break
+            print(i)
+        print("结束遍历")
+    # 当遍历元素等于 2 时直接退出整个循环
+    0
+    1
+    结束遍历
+
+**循环语句中的 continue 语句**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``continue 语句``
+仅用于跳过本次循环，循环并不会终止，会继续执行下一次循环。
+
+1、执行流程图
+
+.. figure:: https://i.loli.net/2020/06/18/TwyBPU7YKZRcI1t.png
+   :alt: 
+
+2、案例
+
+.. code:: python
+
+    >>> for i in range(5):
+            if i == 2:
+                continue
+            print(i)
+        print("结束遍历")
+    # 当遍历元素等于 2 时仅退出本次循环
+    0
+    1
+    3
+    4
+    结束循环
+
+**循环语句中的 pass 语句**
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``pass 语句`` 是 Python
+中的空语句，程序执行到此语句直接跳过，不会做任何的操作，仅作占位语句，但它在保持程序结构的完整性方面，有一定价值。
+
+1、语法格式
+
+.. code:: python
+
+    pass 之前的业务逻辑
+    pass
+    pass 之后的业务逻辑
+
+2、案例
+
+.. code:: python
+
+    >>> for i in range(10):
+            if i % 2 == 0:
+                # 不做任何操作
+                pass
+            else:
+                print("{} 不能被 2 整除".format(i))
+       
+    1 不能被 2 整除
+    3 不能被 2 整除
+    5 不能被 2 整除
+    7 不能被 2 整除
+    9 不能被 2 整除
+
+**扩展 - 无限循环**
+^^^^^^^^^^^^^^^^^^^
+
+``无限循环``\ ，也称死循环，是永远都不会结束的循环，我们需要通过设置条件表达式的值永远为
+True 来实现无限循环。
+
+.. figure:: https://i.loli.net/2020/06/18/OW2X6zdKqlCJjUE.jpg
+   :alt: 
+
+1、语法格式
+
+.. code:: python
+
+    while 永远为 True 的判断条件：
+        循环体
+
+2、案例
+
+.. code:: python
+
+    >>> author = "kele"
+        # 条件永远为 True
+        while author == "kele":
+            print("欢迎关注 可乐python说")
+
+    欢迎关注 可乐python说
+    欢迎关注 可乐python说
+    欢迎关注 可乐python说
+    欢迎关注 可乐python说
+    欢迎关注 可乐python说
+    欢迎关注 可乐python说
+    欢迎关注 可乐python说
+    欢迎关注 可乐python说
+    ...
+    # 循环永远都不会结束
+    # 可使用 Ctrl + C 结束程序
+
+**扩展 - 列表推导式**
+^^^^^^^^^^^^^^^^^^^^^
+
+``列表推导式（List Comprehension）``\ ，是 Python 中的一个很棒的
+``语法糖``\ ，也称为列表解析式，它提供了一种简明扼要的方法来创建一个新列表。
+
+前面我们提到的 for
+循环嵌套使用，业务代码显得有点冗余，也相对耗性能，下面我们将使用列表推导式来代替它。
+
+1、语法格式
+
+.. code:: python
+
+    out_list = [表达式 for 变量 in 列表 条件判断语句等]  
+
+2、案例 - 生成由 0 ~ 10 所有整数的平方组成的新列表
+
+.. code:: python
+
+    >>> out_list = [i**2 for i in range(10)]
+    >>> out_list
+    [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+3、案例 - 生成由 0 ~ 10 所有偶数的平方组成的新列表
+
+.. code:: python
+
+    >>> out_list = [i**2 for i in range(10) if i % 2 ==0]
+    >>> out_list
+    [0, 4, 16, 36, 64]
+
+4、与传统嵌套使用消耗时间对比
+
+.. code:: python
+
+    # 传统 for 循环嵌套
+    # 完成 0-1000 每个数两两相乘
+    >>> # 导入 time 模块用于计时
+        import time
+        start_time = time.time()
+        out_list = []
+        for i in range(1000):
+            for j in range(1000):
+                out_list.append(i*j)
+        print(len(out_list))
+        end_time = time.time()
+        print(end_time-start_time)
+    # 新列表共一百万个元素
+    # 耗时约 0.179 秒
+    1000000
+    0.17854714393615723
+
+.. code:: python
+
+    # 传统列表推导式
+    # 完成 0-1000 每个数两两相乘
+    >>> import time
+        start_time = time.time()
+        out_list = [i*j for i in range(1000) for j in range(1000)]
+        print(len(out_list))
+        end_time = time.time()
+        print(end_time-start_time)
+    # 新列表共一百万个元素
+    # 耗时约 0.088 秒，效率提升不少
+    1000000
+    0.08780097961425781
+
+**扩展 - 计算 1 至 100 整数累加和**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+相信大家对这个案例已经非常熟悉，今天我们使用 Python 中的 for
+循环完成这个计算。
+
+.. code:: python
+
+    >>> num_sum = 0
+        # 遍历得到 0 至 100 的所有整数
+        for i in range(101):
+            # 循环累加求和
+            num_sum += i
+            
+    >>> num_sum
+    5050
+
+**总结**
+^^^^^^^^
+
+    1. 工作中在处理业务逻辑时，经常会使用到循环语句，其中 for
+       循环的使用频率高于 while 循环。
+    2. 使用 while
+       循环时，一定要注意循环退出的条件，初学者很容易将循环写成无限循环
+       。
+    3. 设计循环逻辑时，可灵活结合 break、continue、以及pass 语句，其中
+       break会直接退出整个循环，而continue仅会退出本次循环，直接进入下次循环，使用时注意区分。
+    4. 列表推导式的效率远高于 for
+       循环语句嵌套，它在使用时也十分方便，大家可深入研究，一行代码可带来意想不到的惊喜。
+    5. 推导式不仅仅适用于列表，还可用于字典、集合等一系列可迭代的数据结构。
+    6. 文中难免会出现一些描述不当之处（尽管我已反复检查多次），欢迎在留言区指正，也可分享循环语句相关的技巧、以及有趣的小案例。
+    7. 原创文章已全部更新至 Github
+       ：https://github.com/kelepython/kelepython
+    8. 本文永久博客地址：https://kelepython.readthedocs.io/zh/latest/c01/c01\_10.html
+
+.. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
+   :alt:
