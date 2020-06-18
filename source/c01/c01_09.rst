@@ -42,8 +42,7 @@ True），则执行判断语句后带缩进的代码逻辑，否则不执行。
 
 2、执行流程图：
 
-.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj16wlUcWrsTKZRRnJiaxeRucKvZP2f0OJOaxHr8RLpC97ueOoxLCbZtmOaVdUZPtIZdYsNcgYOaZiaeQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1
-   :alt: img
+|image0|
 
 
 3、案例：
@@ -76,8 +75,7 @@ True），则执行 if 判断语句后带缩进的代码逻辑，否则执行 el
 
 2、执行流程图：
 
-.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj16wlUcWrsTKZRRnJiaxeRucKiajA0vKXhRjGRq6ia1ysr9oCibVEUKrhaTnwDJJgDGA9FwhRj22HXATPA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1
-   :alt: img
+|image1|
 
 
 3、案例：
@@ -128,8 +126,7 @@ True），则执行 if 判断语句后带缩进的代码逻辑，否则执行 el
 
 2、执行流程图：
 
-.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj16wlUcWrsTKZRRnJiaxeRucK2ZE4zAluvz6uL541y1Zd9SlATtQicjUnqaqblYszpKKSC5fm6bP7HVw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1
-   :alt: img
+|image2|
 
 
 3、案例：
@@ -172,8 +169,7 @@ True），则执行 if 判断语句后带缩进的代码逻辑，否则执行 el
 
 2、执行流程图：
 
-.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj16wlUcWrsTKZRRnJiaxeRucKiaaia0lOqNz78PsH5ibc6lUyyKp9hJV5kwicJ2VBhtItHD9iaw3IMPc0xYA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1
-   :alt: img
+|image3|
 
 
 3、案例：
@@ -577,3 +573,8 @@ Python 中有部分特殊对象，它们的布尔值为 False，具体可参照�
 
 .. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
    :alt:
+
+.. |image0| image:: https://i.loli.net/2020/06/18/LAhFZWcaDn69Ssm.png
+.. |image1| image:: https://i.loli.net/2020/06/18/CAQE3t9yvlKqDna.png
+.. |image2| image:: https://i.loli.net/2020/06/18/zaAFkn8X5I4RwyS.png
+.. |image3| image:: https://i.loli.net/2020/06/18/jknd1DEb935yeqW.png
