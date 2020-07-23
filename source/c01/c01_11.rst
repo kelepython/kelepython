@@ -140,7 +140,7 @@ Hi，大家好，我是可乐， ``迭代器`` 与 ``生成器`` 是 Python
 
 .. code:: python
 
-    >>> str_iterator = "kele".__iter__(), Iterable
+    >>> str_iterator = "kele".__iter__()
     >>> str_iterator.__next__()
     'k'
     >>> str_iterator.__next__()
@@ -247,8 +247,8 @@ Hi，大家好，我是可乐， ``迭代器`` 与 ``生成器`` 是 Python
 .. code:: python
 
     >>> class MyIterator:
-        # 以上略...
-        def __next__(self):
+            # 以上略...
+            def __next__(self):
                 return_num = self.num
                 # 只要值大于等于6，就停止迭代
                 if return_num >= 6:
