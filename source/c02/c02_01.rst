@@ -1,0 +1,201 @@
+2.1 Centos 使用 pyinstaller 打包踩坑分享
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+前言
+^^^^
+
+.. figure:: https://i.loli.net/2020/09/09/XDqG3OgohkBpVYl.png
+   :alt: 
+
+最近，在 ``Centos 7`` 虚拟机上面搭建了
+``Python3``\ 环境、以及虚拟环境，以后需要在此环境中进行打包。
+
+今天尝试安装 ``Pyinstaller``
+，并进行打包，安装过程非常顺利，执行一下命令即可。
+
+.. code:: python
+
+    pip3 install pyinstaller
+
+准备测试文件 ``demo.py`` ，内容如下：
+
+.. code:: python
+
+    print("hello python")
+
+但使用以下命令打包测试代码时会报错
+
+.. code:: python
+
+    pyinstaller -F demo.py
+
+现将具体处理过程记录下来
+
+报错提示
+^^^^^^^^
+
+执行打包命令后，报错信息如下:
+
+.. code:: python
+
+    ...前面内容已经省略
+     * On Debian/Ubuntu, you would need to install Python development packages
+     * apt-get install python3-dev
+     * apt-get install python-dev
+     * If you're building Python by yourself, please rebuild your Python with `--enable-shared` (or, `--enable-framework` on Darwin)
+     * (demo) [root@group demo]# This would mean your Python installation doesn't come with proper library fi                                                                                             les.
+    >     This usually happens by missing development package, or unsuitable build par                                                                                             ameters of Python installation.
+
+提示的信息大致说，缺少相关动态库，
+
+1、如果在 ``Debian/Ubuntu`` 上，您需要安装Python开发包 \* apt get 安装
+``python3 dev`` \* apt get 安装 ``python dev``
+
+2、如果你是自己构建 Python ，请使用 ``“-enable shared”``
+重新构建Python（或者在 Darwin 上使用 ``--enable framework``\ ）
+
+3、这意味着你的 Python
+安装没有正确的库文件，这通常是由于缺少开发包，或者 Python
+安装的构建参数不合适而导致的。
+
+第一处报错处理
+^^^^^^^^^^^^^^
+
+1、进入 Python 编译目录
+
+.. code:: python
+
+    cd Python-3.7.2/
+
+2、带上参数 ``--enable-shared`` 重新编译
+
+.. code:: python
+
+    ./configure --prefix=/usr/local/python3 --enable-shared  --with-ssl
+
+3、重新安装
+
+::
+
+    make && make install
+
+编译、安装过程非常顺利，很开心，下面检验一下 Python 是否能正常使用
+
+4、运行 ``python3`` ，出现一个新的报错 -
+``error while loading shared libraries``
+
+.. code:: python
+
+    python3
+
+具体报错信息如下：
+
+.. code:: python
+
+    python3 ：error while loading shared libraries :libpython3.7m.so.1.0：cannot open shared object file：No such file or directory.
+
+第二处报错处理
+^^^^^^^^^^^^^^
+
+分析报错信息，运行时链接动态库失败导致的报错
+
+1、查看编译时安装 ``libpython3.7m.so.1.0`` 动态库的目录
+
+.. code:: python
+
+    find /usr -name 'libpython3.6m.so.1.0'
+
+输出如下信息
+
+.. code:: python
+
+    /usr/local/python3/lib/libpython3.7m.so.1.0
+
+则安装该动态库的目录为 ``/usr/local/python3/lib``\ ，
+
+2、使用链接器查看可搜索范围，并没有发现 ``libpython3.7m.so.1.0``
+
+.. code:: python
+
+     ldconfig -v | grep python3
+
+执行以下命令也可发现，这个库的指向为 ``not found``
+
+.. code:: python
+
+    ldd $(which python3)
+
+根据资料说明，链接器默认的动态库以搜索范围是 ``/lib`` 、\ ``/usr/lib``
+以及 ``/etc/ld.so.conf``
+配置文件中包含的目录，这是我们处理问题的突破口。
+
+3、收到将该库的安装目录 - ``/usr/local/python3/lib/``\ ， 添加到
+``/etc/ld.so.conf`` 中
+
+.. code:: python
+
+    vi /etc/ld.so.conf
+
+编辑后的内容如下:
+
+.. code:: python
+
+    include ld.so.conf.d/*.conf
+    /opt/openssl1.0.2r/lib
+    /usr/local/python3/lib
+
+4、执行 ``ldconfig`` 刷新缓存
+
+.. code:: python
+
+    ldconfig
+
+5、检验命令 ``python3`` ，可正常使用
+
+.. code:: python
+
+    python3
+
+6、再次使用 ``pyinstaller`` 打包测试代码
+
+.. code:: python
+
+    pyinstaller -F demo.py
+
+打包成功
+
+.. code:: python
+
+    ... 以上打包提示信息已省略
+    20945 INFO: Building EXE from EXE-00.toc completed successfully.
+
+7、进入当前目录下的 ``dist`` 目录中，执行刚刚生成的打包文件 ``demo``
+
+.. code:: python
+
+    cd dist/
+
+.. code:: python
+
+    ./demo
+
+成功输出 ``hello python``\ ，至此报错问题已全部处理。
+
+总结
+^^^^
+
+    1. 之前我们编译的方式，没有加上 ``--enable-shared`` 参数，为
+       ``静态编译``\ ，而打包时又需要使用到一些动态库，所以我们调整为使用
+       ``动态编译`` 的方法，重新编译了 Python3
+       环境，成功处理了第一个报错。
+    2. 编译后，运行 ``python3``
+       命令时找不到我们安装的相关动态库，因为系统只会在默认的几处地方去寻找，我们手动将动态库的安装目录添加到
+       ``/etc/ld.so.conf`` 文件中，成功处理第二个报错。
+    3. 添加动态库安装目录后，记得刷新一下缓存。
+    4. 原创文章已全部更新至 Github
+       ：https://github.com/kelepython/kelepython
+    5. 本文永久博客地址：https://kelepython.readthedocs.io/zh/latest/c02/c02\_01.html
+    6. 环境的安装，往往会遇到一些坑，不过只要我们脚踏实地，认真记录好自己工作、学习中遇到的一些小问题，积累下来，将会变成一笔宝贵的财富。
+
+.. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
+   :alt:
