@@ -1,0 +1,292 @@
+3.1 实战 \| 手把手带你从零搭建永久免费个人博客
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_jpg/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkz1X8Q9w5P00SrdJhvEQUPGaT7S1lNmL5tk6wHd98FCibE6CA2dSKQcw/640?wx_fmt=jpeg
+   :alt: 
+
+ 
+0. 前言
+^^^^^^^
+
+很喜欢一句话，“好记性不如烂笔头”，一直以来，我都有写技术笔记的习惯，将自己学习的知识、遇到的问题、处理方案等记录下来，长期积累下去，也将是一笔宝贵的财富。
+
+以前在\ ``博客园``\ 、\ ``CSDN``\ 上写过文章，也曾有过搭建个人博客的想法，之前尝试过几个模板，使用
+``Python`` 实现，不过后续由于种种原因中途放弃了。
+
+上段时间在 ``知乎``
+上看到一篇关于博客搭建的文章，写得挺详细，原文使用的环境是 Python
+2.7.14，我使用 Python 3.6.8
+搭建了一个属于自己的\ **永久免费**\ 技术博客。
+
+其实，我在 2020 年 4 月 20
+日就完成了个人博客的搭建，期间也踩了不少坑。时隔近半年的今天，在踩了众多坑之后，我精心总结，毫无保留地将所有的操作步骤分享给大家。
+
+1. 博客预览
+^^^^^^^^^^^
+
+这是我的个人技术博客 (kelepython.readthedocs.io) ，大家先预览一下效果。
+
+1、首页，可看到所有文章的索引
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkibawmYIlk6iar84BU6vffmkYMWXoMLCicZNLtDHjFXuRCR9ic81LUJSlng/640?wx_fmt=png
+   :alt: 
+
+2、前言页面
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkHnUePSs0Ae0Bk2gP8QXSl9PW5q3pZYC2BbXUoHsLeo0OonjrYrHjFQ/640?wx_fmt=png
+   :alt: 
+
+3、点击对应文章索引，可进入文章预览页面
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgk4uK1cqrYMYb0kn4Eb1k6uCOa4lV1TaRYLMcGBz4nLDI0qKvfVgTgOQ/640?wx_fmt=png
+   :alt: 
+
+4、还支持关键词检索，如在左侧搜索栏输入 ``Python``
+回车，检索内容会高亮展示
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkusjXXx2NoJEXphrJeg4TodqPgDibwLuC7xR2qqSZ2DUJ1KIPbTT0qqg/640?wx_fmt=png
+   :alt: 
+
+2. 环境和库
+^^^^^^^^^^^
+
+本文使用 **Typora** + **Sphinx** + **GitHub** + **ReadtheDocs**
+来实现个人博客的搭建、文章撰写以及管理。
+
+-  **Typora** : **Markdown** 编辑器，用于转写文章
+-  **Sphinx** ：生成博客网页
+-  **GitHub** ：托管博客项目
+-  **ReadtheDocs** ：构建、发布网页
+
+3. 相关环境准备
+^^^^^^^^^^^^^^^
+
+1、安装 **Python 3.6.8** 环境，请自行下载安装（网上有很多相关教程）。
+
+2、运行如下命令，安装 **Sphinx** 。
+
+::
+
+    pip install sphinx sphinx-autobuild sphinx_rtd_theme
+
+3、创建项目根目录 ``myblog``\ ，并执行 ``sphinx-quickstart``
+初始化项目，输入项目相关配置项。
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkSP1icrS54gyePj8k0jSrejtxNiayPib4Mib7GOzv7El8VUgPazhCWXz6tw/640?wx_fmt=png
+   :alt: 
+
+4、完成后，项目目录结构如下所示：
+
+::
+
+    PS F:\learning\myblog> tree /f
+    文件夹 PATH 列表
+    卷序列号为 0EDB-3039
+    F:.
+    │  make.bat
+    │  Makefile
+    │
+    ├─build                
+    └─source
+        │  conf.py
+        │  index.rst
+        │
+        ├─_static
+        └─_templates
+
+5、完成项目配置及扩展，配置文件为 ``source/config.py``
+，为了快速搭建博客，关注微信公众号 **「可乐python说」**\ ，后台回复
+**个人博客** 即可获取。
+
+6、配置文件的使用还需要搭配扩展模块才能正常使用，获取压缩包之后，将里面的
+``exts`` 文件夹拷贝到 ``source`` 同级目录（项目根目录）下即可。
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkdvDblnyKE54CONIluyMWVibL47uY2LLNWBBl6gJKfroukC3o4bAOL5Q/640?wx_fmt=png
+   :alt: 
+
+7、安装第三方依赖包，我已全部写入压缩包中的 ``requirements.txt``
+文件中，你只需执行以下命令安装即可完成批量安装，\ **并将此 txt
+文件拷贝到项目根目录下**\ 。
+
+::
+
+    pip install -r requirements.txt
+
+至此，准备工作已基本完成，下面可以开始创作了。
+
+4. 撰写文章
+^^^^^^^^^^^
+
+1、在 ``source`` 目录下新建名为 ``language_introduction.rst`` 的文件。
+
+2、写入如下内容并保存。
+
+::
+
+    第一章 语言介绍
+    ======================
+
+    1.1 Python
+    ---------------------
+
+    Hi, 我叫 Python...
+
+
+    1.2 Java
+    ---------------------
+
+    Hi, 我叫 Java...
+
+3、写完文章后，我们还需将文章写入排版配置文件 ``source\index.rst``
+中，内容如下，\ **注意一定要有空行**\ ，其他内容均可删除。
+
+::
+
+    以上略...Welcome to myblog's documentation!==================================.. toctree::
+       :maxdepth: 2
+       :caption: Contents:
+
+       language_introduction
+
+4、在根目录下执行 ``.\make html`` 生成静态页面 。
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkSP1icrS54gyePj8k0jSrejtxNiayPib4Mib7GOzv7El8VUgPazhCWXz6tw/640?wx_fmt=png
+   :alt: 
+
+5、执行完之后，生成的静态页面保存在 ``\build\html``
+目录下，我们可使用浏览器打开 ``index.html`` 验证效果 。
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkcRjYFTSricE1CENiaEXR1r3iaWKhImT76YeBDm6xOextT3GoabNY6BBsg/640?wx_fmt=png
+   :alt: 
+
+是不是很激动？我第一次看到网页效果的时候也非常激动。
+
+至此，本地项目已经完成，但这仅仅是我们本地的效果，要让读者能够访问我们的博客，还需要将博客\ **发布上线**\ 。
+
+5. 托管项目
+^^^^^^^^^^^
+
+选择 ``GitHub`` 托管项目， 在 ``push``
+项目之前，我们需要在项目根目录下添加忽略文件
+``.gitignore``\ ，内容如下：
+
+::
+
+    build/
+    .idea/
+    *.pyc
+
+在 GitHub 上新建一个仓库，在本地配置好 ``Git``
+的相关配置项，然后将整个项目 push 到远程仓库中， Git
+相关的操作请自行查阅相关文档实现。
+
+6. 发布上线
+^^^^^^^^^^^
+
+要想别人通过公网访问我们的博客，还需要将项目发布上线，本文使用
+``Read the Docs`` 发布，请进入官网：https://readthedocs.org/。
+
+1、你需要先注册、登陆、然后关联你的 GitHub
+博客项目代码仓库，输入项目相关信息后，点击\ ``下一页``
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkic2gUIJaQDLvcNao3ia9VIqd9p8Kqs3kTXBicqRdNu7EtycXFciceBhhng/640?wx_fmt=png
+   :alt: 
+
+2、点击 ``Build version`` 构建项目版本
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgk6Qq0KFibLAAgCmCSXHdgJn9icnIuRZHGUGZxjuNpHZicXSorgxt263h3A/640?wx_fmt=png
+   :alt: 
+
+3、耐心等待，当看到 ``构建完成`` 时表示此版本构建成功
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkbZ5x7MHXsDAUdFICgOaJfpfwUDVPcxfKmGDHmDHukPFJicnicS2ov1kg/640?wx_fmt=png
+   :alt: 
+
+4、待构建完成之后，点击\ ``概况``\ ，我们可以在 ``短网址``
+栏看到我们的公网地址
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkFqkHMsLUvGribOicicJZtxPgEaxyBD98jkicebQNmkY6icibG9EmLNEibZpKw/640?wx_fmt=png
+   :alt: 
+
+5、没错这就是我们博客的访问地址，赶紧复制下来，去浏览器访问你的个人博客
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkvHzaBcW8OR2KAqCLibZkexbbusUnnM3bvX3WEuKH7WF1TTa2mkhl8aw/640?wx_fmt=png
+   :alt: 
+
+7. ``Markdown`` 转换
+^^^^^^^^^^^^^^^^^^^^
+
+至此，我们就完成了个人博客的搭建，但是这种撰写文章的方式很不习惯，如果你也和我一样，日常使用
+**Markdown** 编辑器 - **Typora** 写文章的话，请接着往下看。
+
+当然，你也可自行配置使用何种格式的文件构建博客项目，具体的配置可前往文末的相关官网网站研究。
+
+1、写文章之前我们需要下载、安装 **Markdown** 编辑器 -
+``Typora``\ ，请前往官网https://www.typora.io/下载。
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkmhCykHPO5esyTB7GG4DzAGskqichicpjRYKYn5p2iaEbzqsia4vsIwjEXA/640?wx_fmt=png
+   :alt: 
+
+2、下载完之后我们可编写一个简单的 ``preface.md`` 文件，内容如下：
+
+::
+
+    前言
+
+    关于博客
+
+    这个网站是我的首个博客，博客名字叫《可乐python说》，此博客于2020年4月20日发布完成，使用的是 Sphinx 来生成文档，使用 Github 托管文档，并使用 Read the Doc 发布文档。
+
+3、对于格式转换，原文使用的 ``pandoc``
+实现，你只需安装、执行相应的命令即可，本文使用代码实现，转换代码，我已为你准备好，一并放在压缩包资料中。
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkKpWExybHO10NVFibSArjoJ2Q75Nr1fJAfvKEF0lBUT5BPPovcj63O8w/640?wx_fmt=png
+   :alt: 
+
+4、运行压缩包里面的 ``md_to_rst.py`` 文件可将 ``.md`` 文件转换为
+``.rst`` 格式的文件 ，运行完之后会在项目根目录下生成 ``preface.rst``
+文件，接下来就可使用 Git 同步本地项目到远程仓库。
+
+5、同步文章至远程仓库后，按照上述步骤，构建项目，即可更新博客。
+
+6、切记一定要更新配置文件 ``source\index.rst`` ，内容如下
+
+::
+
+    以上略...Welcome to myblog's documentation!==================================.. toctree::
+       :maxdepth: 2
+       
+       preface
+       language_introduction
+
+7、更新完的博客页面如下，我们新增了\ ``前言``\ 页面，去掉了默认的目录配置
+``:caption: Contents:``
+
+.. figure:: https://mmbiz.qpic.cn/mmbiz_png/BZgVcE4dj15dSNLgXIWlm8SoVLZicrvgkht1flDl0F5AFqXUFmoQrvsZnRLSicKp4Fjf4tjBtX4TZjYMFxX4PIzA/640?wx_fmt=png
+   :alt: 
+
+8. 总结
+^^^^^^^
+
+    1.  使用不同的 Python
+        版本，对应的第三方依赖的版本也有所不同，具体的坑需要你自行尝试。
+    2.  本文使用 Python 3.6.8
+        ，踩坑之后发现，需指定第三方依赖版本，否则会构建失败，对应依赖包的版本我已全部提供在压缩包的
+        ``requirements.txt`` 文件中。
+    3.  Github 远程仓库的项目必须公开，否则会构建失败。
+    4.  搭建步骤较多，但难度不大，建议按照教程一步步实现，每个步骤对后面的操作都会存在影响，切记一定细心，否则会构建失败。
+    5.  不要怕报错，可乐也是踩了很多坑，最后才完成博客搭建的，有疑问、或者相关的建议、技巧请在评论区留言、交流、分享。
+    6.  完整资料，请扫码关注下方微信公众号，后台回复 **「个人博客」**
+        领取。
+    7.  ``sphinx``
+        支持定制化配置，具体介绍请前往官网学习，https://www.sphinx-doc.org/en/master/index.html。
+    8.  目录索引排版配置文件的具体介绍请前往
+        https://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html#directive-toctree
+        学习。
+    9.  原创文章已全部更新至
+        Github：https://github.com/kelepython/kelepython。
+    10. 本文永久博客地址：https://kelepython.readthedocs.io/zh/latest/c03/c03\_01.html
+    11. 参考文章：https://zhuanlan.zhihu.com/p/38432910
+
+.. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
+   :alt:

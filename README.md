@@ -16,6 +16,10 @@
 
 ## 第二章：技术笔记
 - 2.1 [Centos 使用 pyinstaller 打包踩坑分享](<https://kelepython.readthedocs.io/zh/latest/c02/c02_01.html>)
+
+## 第三章：Python 实战
+- 3.1 [实战 | 手把手带你从零搭建永久免费个人博客](<https://kelepython.readthedocs.io/zh/latest/c03/c03_01.html>)
+
 ---
 ![](https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png)
 
