@@ -285,7 +285,7 @@
     1、原创文章已全部更新至
     Github：https://github.com/kelepython/kelepython
 
-    2、本文永久博客地址：https://kelepython.readthedocs.io/zh/latest/c01/c01\_09.html
+    2、本文永久博客地址：https://kelepython.readthedocs.io/zh/latest/c03/c03\_02.html
 
     3、整个实现案例比较简单，建议大家亲自尝试一下。
 
