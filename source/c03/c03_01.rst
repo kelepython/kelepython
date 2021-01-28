@@ -286,7 +286,7 @@
     9.  原创文章已全部更新至
         Github：https://github.com/kelepython/kelepython。
     10. 本文永久博客地址：https://kelepython.readthedocs.io/zh/latest/c03/c03\_01.html
-    11. 参考文章：https://zhuanlan.zhihu.com/p/38432910
+    11. 参考文章：https://mp.weixin.qq.com/s/JS36vUY_EVf9W7FKFXDMqQ
 
 .. figure:: https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png
    :alt:
