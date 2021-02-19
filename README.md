@@ -14,6 +14,7 @@
 - 1.10 [基础 | Python 循环语句详解 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_10.html>)
 - 1.11 [Python 中的可迭代对象、迭代器与生成器 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_11.html>)
 - 1.12 [浅谈 Python 中的函数 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_12.html>)
+- 1.13 [浅谈 Python 中的模块 ](<https://kelepython.readthedocs.io/zh/latest/c01/c01_13.html>)
 
 ## 第二章：技术笔记
 - 2.1 [Centos 使用 pyinstaller 打包踩坑分享](<https://kelepython.readthedocs.io/zh/latest/c02/c02_01.html>)
