@@ -21,7 +21,7 @@
 
 ## 第三章：Python 实战
 - 3.1 [实战 | 手把手带你从零搭建永久免费个人博客](<https://kelepython.readthedocs.io/zh/latest/c03/c03_01.html>)
-- 3.1 [实战 | Python 实现 AI 语音合成技术](<https://kelepython.readthedocs.io/zh/latest/c03/c03_02.html>)
+- 3.2 [实战 | Python 实现 AI 语音合成技术](<https://kelepython.readthedocs.io/zh/latest/c03/c03_02.html>)
 
 ---
 ![](https://i.loli.net/2020/05/15/KQYmB3WZN2R6FEn.png)
